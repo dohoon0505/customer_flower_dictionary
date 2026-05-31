@@ -1,0 +1,13 @@
+{
+  "name": "flower-startup-encyclopedia",
+  "version": "1.0.0",
+  "description": "꽃배달 창업 백과사전 — 시장 분석부터 운영·법규까지 한 권으로 정리한 실전 가이드북.",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "keywords": ["flower-delivery", "florist", "startup", "guidebook", "encyclopedia"],
+  "author": "/DH",
+  "license": "MIT"
+}

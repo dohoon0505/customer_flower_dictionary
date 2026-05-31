@@ -1,0 +1,172 @@
+{
+  "name": "flower-usage-guide",
+  "fullName": "꽃배달 이용 가이드",
+  "shortName": "꽃가이드",
+  "version": "2.0.0",
+  "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상황별 꽃 고르기, 배송비·시간, 리본 문구, 취소·환불, 문제 해결까지 주문 여정 순서로 정리했습니다.",
+  "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
+  "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
+  "entry": {
+    "ai": "AGENTS.md",
+    "human": "CLAUDE.md",
+    "readme": "README.md"
+  },
+  "chapters": [
+    {
+      "id": "getting-started",
+      "num": "01",
+      "title": "꽃배달이 처음이라면",
+      "subtitle": "전국꽃배달이 움직이는 방식",
+      "desc": "쿠팡과 다른 배달 구조 · 주문부터 도착까지 5단계.",
+      "icon": "i-store",
+      "data": "analyses/getting-started/chapter.json"
+    },
+    {
+      "id": "choosing-flowers",
+      "num": "02",
+      "title": "상황별 꽃 고르기",
+      "subtitle": "장례·축하·란·식물·바구니·다발",
+      "desc": "어떤 상황에 무엇을 보낼지, 예산과 고를 때 주의점.",
+      "icon": "i-leaf",
+      "data": "analyses/choosing-flowers/chapter.json"
+    },
+    {
+      "id": "price-and-fees",
+      "num": "03",
+      "title": "가격과 배송비",
+      "subtitle": "배송비가 붙는 이유 · 담합지역",
+      "desc": "왜 배송비가 발생하는지와 우리 동네 추가 요금 확인법.",
+      "icon": "i-tag",
+      "data": "analyses/price-and-fees/chapter.json"
+    },
+    {
+      "id": "timing-and-delivery",
+      "num": "04",
+      "title": "시간 맞춰 받기",
+      "subtitle": "3시간 룰 · 예약 · 지연",
+      "desc": "언제까지 주문해야 하는지와 배송이 늦어질 때 대처.",
+      "icon": "i-truck",
+      "data": "analyses/timing-and-delivery/chapter.json"
+    },
+    {
+      "id": "messages-ribbon",
+      "num": "05",
+      "title": "메시지와 리본 문구",
+      "subtitle": "근조·축하·기념일 문구",
+      "desc": "상황별 리본·카드 문구를 어떻게 쓸지 예시로 정리.",
+      "icon": "i-receipt",
+      "data": "analyses/messages-ribbon/chapter.json"
+    },
+    {
+      "id": "change-cancel-refund",
+      "num": "06",
+      "title": "바꾸거나 취소할 때",
+      "subtitle": "취소·환불·문구 변경",
+      "desc": "취소·환불 가능 시점과 수수료, 내용 변경 범위.",
+      "icon": "i-corner-down-left",
+      "data": "analyses/change-cancel-refund/chapter.json"
+    },
+    {
+      "id": "when-problems",
+      "num": "07",
+      "title": "문제가 생겼을 때",
+      "subtitle": "사진과 다를 때 · 문의 방법",
+      "desc": "받은 꽃이 기대와 다를 때 어떻게 문의하고 해결하나.",
+      "icon": "i-shield",
+      "data": "analyses/when-problems/chapter.json"
+    }
+  ],
+  "releases": [
+    {
+      "version": "2.0.0",
+      "date": "2026-06-01",
+      "title": "고객용 '꽃배달 이용 가이드'로 전향 + 따뜻한 안내소 리디자인",
+      "tag": "MAJOR",
+      "highlight": "타겟 독자를 '꽃 주문이 처음인 고객'으로 바꾸고, 목차를 주문 여정(이해→고르기→비용→시간→문구→변경→문제) 7개 챕터로 다시 설계했습니다. 비주얼도 첫 고객에게 안심을 주는 '따뜻한 안내소' 톤으로 새로 다듬었습니다.",
+      "changes": [
+        { "type": "changed", "value": "타겟 전환 — 꽃집 사장·상담사용 응대 매뉴얼에서 주문이 처음인 고객용 이용 가이드로" },
+        { "type": "changed", "value": "목차 전면 재설계 — 고객 주문 여정 기준 7개 챕터(처음이라면·고르기·가격·시간·문구·변경·문제)" },
+        { "type": "added", "value": "'주문부터 도착까지 5단계' 단계형 주문 레일(steprail) — 시그니처 안내 컴포넌트" },
+        { "type": "added", "value": "'메시지와 리본 문구' 챕터 신규 — 근조·축하·기념일 문구 예시" },
+        { "type": "removed", "value": "사장 전용 콘텐츠 제거 — 정산·마진, 자체 할인 자유도, '고객은 왕이 아닙니다'" },
+        { "type": "changed", "value": "'따뜻한 안내소' 팔레트로 리디자인 + 안티디자인 가이드 준수(자간·모션·아이콘 절제·prefers-reduced-motion)" }
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-05-14",
+      "title": "목차 7개 챕터로 정제 + 사이드바 모두 접기",
+      "tag": "MINOR",
+      "highlight": "실제 상담 현장에서 자주 마주치는 항목 중심으로 목차를 다시 짰습니다. 사이드바가 길어질 때 한 번에 정리할 수 있는 '모두 접기' 버튼도 추가했습니다.",
+      "changes": [
+        { "type": "changed", "value": "목차 8→7개로 정제: '상품 추천 상담'과 'CS 도구·백오피스' 챕터 제거" },
+        { "type": "added", "value": "'정산시스템' 챕터 신규 — 상품별 마진의 이해" },
+        { "type": "changed", "value": "'결제·환불·교환' → '환불 · 교환' (결제 영역 제외, 최소수수료/리본 교체 중심)" },
+        { "type": "changed", "value": "각 챕터의 아티클 목록을 실전 상담 키워드로 재정의 (근조화환·축하화환·동양란·서양란 등)" },
+        { "type": "added", "value": "사이드바 챕터 그룹에 '모두 접기' 버튼 — 펼쳐진 챕터를 한 번에 정리" }
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-05-14",
+      "title": "고객 상담 중심 가이드로 컨셉 전환",
+      "tag": "MAJOR",
+      "highlight": "타겟 독자를 '온라인 꽃 배달 쇼핑몰 상담사'로 재정의하고, 목차를 상담 시나리오 중심 8개 챕터로 개편했습니다.",
+      "changes": [
+        { "type": "changed", "value": "목차 전면 개편: 상담의 기초 · 상품 추천 · 배송 · 상품 문의 · 결제 환불 · 컴플레인 · 재구매 · CS 도구" },
+        { "type": "added", "value": "GitBook식 통합 검색 (Cmd/Ctrl+K) — 챕터·아티클을 한 번에 찾아 바로 이동" },
+        { "type": "removed", "value": "기존 창업·시장 분석 중심 8개 챕터 콘텐츠 제거" }
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-05-14",
+      "title": "꽃배달 창업 백과사전 v1.0 출간",
+      "tag": "MAJOR",
+      "highlight": "시장 분석부터 운영·법규까지 8개 챕터 골격으로 첫 버전을 공개했습니다 (이후 v1.1에서 상담 중심으로 전환).",
+      "changes": [
+        { "type": "added", "value": "8개 챕터 카테고리 구조" },
+        { "type": "added", "value": "초판 아티클 10건" },
+        { "type": "added", "value": "릴리즈 노트 페이지 신설 (#changelog)" },
+        { "type": "added", "value": "라이트/다크 모드 + 큰글씨 모드 + 모바일 반응형" }
+      ]
+    },
+    {
+      "version": "0.9.0",
+      "date": "2026-04-28",
+      "title": "베타 — 콘텐츠 골격 확정",
+      "tag": "MINOR",
+      "highlight": "챕터별 학습 목표와 핵심 아티클 골격을 확정했습니다.",
+      "changes": [
+        { "type": "added", "value": "챕터별 학습 목표(Learning Objective) 정의" },
+        { "type": "improved", "value": "아티클 본문 블록 컴포넌트(heading/note/kv/structure) 정비" }
+      ]
+    },
+    {
+      "version": "0.5.0",
+      "date": "2026-03-15",
+      "title": "알파 — 디자인 시스템 셸 구축",
+      "tag": "MINOR",
+      "highlight": "사이드바·홈·라우팅을 포함한 가이드북 셸을 구현했습니다.",
+      "changes": [
+        { "type": "added", "value": "토큰 기반 디자인 시스템 (라이트/다크)" },
+        { "type": "added", "value": "해시 기반 SPA 라우팅 (#chapter/, #chapter/article)" }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-02-20",
+      "title": "프로젝트 킥오프",
+      "tag": "INITIAL",
+      "highlight": "꽃배달 창업자에게 필요한 정보를 한 권에 담는다는 목표로 프로젝트를 시작했습니다.",
+      "changes": [
+        { "type": "added", "value": "GitHub 저장소 생성 · 라이선스(MIT) · 기본 문서 구성" }
+      ]
+    }
+  ],
+  "counts": {
+    "chapters": 7,
+    "articles": 18,
+    "releases": 7
+  }
+}

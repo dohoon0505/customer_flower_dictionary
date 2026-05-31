@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꽃배달 이용 가이드 — 처음 주문도 막힘없이</title>
+<meta name="description" content="꽃 주문이 처음인 분을 위한 이용 가이드. 전국꽃배달이 움직이는 방식부터 상황별 꽃 고르기, 배송비·시간, 리본 문구, 취소·환불, 문제 해결까지 주문 순서대로 안내합니다.">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css?v=2.0.0">
+</head>
+<body data-theme="light">
+
+<!-- ============ ICON SPRITE ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1v-9.5z"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 21.5"/>
+      <path d="M4 4.5v17"/><path d="M20 19v3H6.5"/>
+    </symbol>
+    <symbol id="i-changelog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7h12"/><path d="M3 12h18"/><path d="M3 17h9"/>
+      <circle cx="19" cy="7" r="2"/><circle cx="17" cy="17" r="2"/>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 20A7 7 0 014 13V7a4 4 0 014-4h5a8 8 0 018 8 9 9 0 01-9 9z"/>
+      <path d="M4 13c4-4 9-7 14-7"/>
+    </symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+      <line x1="7" y1="7" x2="7.01" y2="7"/>
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="6" width="13" height="11" rx="1"/>
+      <path d="M14 9h4l3 4v4h-7"/>
+      <circle cx="6.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/>
+    </symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l1.5-5h15L21 9"/>
+      <path d="M3 9v11h18V9"/>
+      <path d="M3 9a3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3 3 3 0 003 3 3 3 0 003-3"/>
+    </symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2z"/>
+      <path d="M15 8a5 5 0 010 8"/>
+    </symbol>
+    <symbol id="i-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/>
+      <path d="M3.27 6.96L12 12l8.73-5.04"/>
+      <line x1="12" y1="22" x2="12" y2="12"/>
+    </symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2z"/>
+      <line x1="9" y1="7" x2="15" y2="7"/>
+      <line x1="9" y1="11" x2="15" y2="11"/>
+      <line x1="9" y1="15" x2="13" y2="15"/>
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l6 6 6-6"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>
+    </symbol>
+    <symbol id="i-textsize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 18l4-11 4 11"/><path d="M6.5 14h5"/>
+      <path d="M14 18l3.5-8 3.5 8"/><path d="M15 16h5"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    </symbol>
+    <symbol id="i-corner-down-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 14l-4-4 4-4"/><path d="M20 4v6a4 4 0 01-4 4H5"/>
+    </symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="5" x2="5" y2="19"/>
+      <circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+    </symbol>
+    <symbol id="i-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ SIDEBAR TOGGLE (mobile) ============ -->
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="네비게이션 열기">
+  <svg width="20" height="20"><use href="#i-menu"/></svg>
+</button>
+<div class="sidebar-scrim" onclick="closeSidebar()"></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar" id="sidebar">
+  <a class="sidebar-brand" href="#">
+    <div class="brand-mark">꽃</div>
+    <div>
+      <div class="brand-name">꽃배달 이용 가이드</div>
+      <div class="brand-ver">v2.0.0</div>
+    </div>
+  </a>
+
+  <!-- Home -->
+  <div class="sidebar-group">
+    <ul class="sidebar-nav">
+      <li><a class="sidebar-link is-active" href="#" data-section="home">
+        <svg class="ico"><use href="#i-home"/></svg>홈</a></li>
+    </ul>
+  </div>
+
+  <!-- Chapters (dynamically populated) -->
+  <div class="sidebar-group" id="sidebar-chapters">
+    <div class="sidebar-group-header">
+      <div class="sidebar-group-title">목차 · Chapters</div>
+      <button class="sidebar-collapse-all" type="button" onclick="collapseAllChapters()"
+              aria-label="모든 챕터 접기" title="펼쳐진 챕터를 한 번에 접기">
+        <svg class="ico" aria-hidden="true"><use href="#i-chevron-up"/></svg>
+        <span>모두 접기</span>
+      </button>
+    </div>
+    <ul class="sidebar-nav" id="chapter-nav-list">
+      <li class="sidebar-empty">목차를 불러오는 중…</li>
+    </ul>
+  </div>
+
+  <!-- Resources -->
+  <div class="sidebar-group">
+    <div class="sidebar-group-title">자료실</div>
+    <ul class="sidebar-nav">
+      <li><a class="sidebar-link" href="#changelog" data-section="changelog">
+        <svg class="ico"><use href="#i-changelog"/></svg>릴리즈 노트</a></li>
+    </ul>
+  </div>
+
+  <!-- Theme toggle -->
+  <div class="sidebar-theme">
+    <div>
+      <div class="sidebar-theme-label">테마</div>
+      <div class="sidebar-theme-sub" id="theme-sub">Light Mode</div>
+    </div>
+    <button class="sidebar-theme-btn" onclick="toggleTheme()" aria-label="테마 전환">
+      <span id="sidebar-theme-icon">☾</span>
+      <span id="sidebar-theme-label">Dark</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============ TOPBAR ============ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#">
+      <div class="brand-mark">꽃</div>
+      <div class="brand-text">꽃배달 이용 가이드</div>
+    </a>
+    <nav class="topbar-nav">
+      <button class="search-trigger" onclick="openSearch()" aria-label="검색 (단축키 Ctrl+K)">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+        <span class="search-trigger-text">검색</span>
+        <kbd class="search-trigger-kbd">⌘K</kbd>
+      </button>
+      <a class="topbar-link" href="#changelog">릴리즈 노트</a>
+      <button class="zoom-toggle" onclick="toggleZoom()" aria-label="큰글씨 모드 전환" aria-pressed="false">
+        <svg class="ico" aria-hidden="true"><use href="#i-textsize"/></svg>
+        <span class="zoom-text" id="zoom-label">큰글씨</span>
+      </button>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="테마 전환">
+        <span id="theme-icon">☾</span>
+        <span id="theme-label">Dark</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ MAIN CONTENT ============ -->
+<div class="container" id="top">
+
+  <!-- HOME -->
+  <section class="hero" id="home-hero">
+    <div class="hero-meta">
+      <span class="tag">꽃배달 이용 가이드</span>
+      <span class="hero-ver" id="hero-ver">v2.0.0</span>
+    </div>
+    <h1>꽃배달, 처음이어도<br>막힘없이 주문하기.</h1>
+    <p class="hero-desc">
+      장례식장 화환, 결혼·개업 축하, 기념일 꽃다발 — 무엇을 어떻게 골라 보내야 할지 막막하셨다면. 주문하는 순서 그대로, 한 단계씩 짚어 드립니다.<br>
+      처음 한 번만 알아두면, 다음부터는 망설임 없이 보낼 수 있어요.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn--primary" href="#chapter/getting-started">1장부터 차근차근 보기</a>
+      <button class="btn btn--ghost" onclick="openSearch()">키워드로 찾기</button>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section class="home-section" id="home-toc">
+    <h2 class="home-section-title">목차</h2>
+    <p class="home-section-desc">주문하는 순서 그대로 7개 장으로 짰습니다. 꽃배달이 처음이라면 1장부터 차례로 읽는 것을 권합니다.</p>
+    <div class="chapter-grid" id="chapter-grid">
+      <div class="chapter-card chapter-card--skeleton"></div>
+      <div class="chapter-card chapter-card--skeleton"></div>
+      <div class="chapter-card chapter-card--skeleton"></div>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section class="home-section">
+    <h2 class="home-section-title">이런 분께 도움이 됩니다</h2>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <h3>장례식장에 화환을 처음 보내는 분</h3>
+        <p>어디로, 언제까지, 리본에 뭐라고 적어야 하는지 — 격식이 걱정될 때 그대로 따라 할 수 있게.</p>
+      </div>
+      <div class="audience-card">
+        <h3>결혼·개업 축하가 처음인 분</h3>
+        <p>예식장은 예약이 필요한지, 화환 크기는 어떻게 고르는지, 시간은 언제 맞춰야 하는지 정리했습니다.</p>
+      </div>
+      <div class="audience-card">
+        <h3>무엇을 골라야 할지 막막한 분</h3>
+        <p>상황만 정하면 상품은 따라옵니다. 받는 분 상황에 맞는 꽃과 예산을 한눈에 비교해 보세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW (dynamically populated by JS for chapter/article/changelog) -->
+  <section id="report-view" style="display:none;"></section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>꽃배달 이용 가이드 · v2.0.0 · 처음 주문도 막힘없이</div>
+      <div class="footer-sig">MAINTAINED BY /DH · 2026</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ============ SEARCH MODAL ============ -->
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-input" hidden>
+  <div class="search-backdrop" data-search-close></div>
+  <div class="search-panel">
+    <div class="search-input-wrap">
+      <svg class="ico search-input-icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <input type="search" id="search-input" class="search-input"
+             placeholder="장·아티클·본문 검색 (예: 근조화환, 배송비, 리본 문구)"
+             autocomplete="off" spellcheck="false" />
+      <kbd class="search-kbd" data-search-close>Esc</kbd>
+    </div>
+    <div class="search-results" id="search-results" role="listbox" aria-label="검색 결과"></div>
+    <div class="search-footer">
+      <span><kbd class="search-kbd">↑</kbd><kbd class="search-kbd">↓</kbd> 이동</span>
+      <span><kbd class="search-kbd"><svg class="ico" style="width:11px;height:11px" aria-hidden="true"><use href="#i-corner-down-left"/></svg></kbd> 열기</span>
+      <span><kbd class="search-kbd">Esc</kbd> 닫기</span>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js?v=2.0.0"></script>
+</body>
+</html>
