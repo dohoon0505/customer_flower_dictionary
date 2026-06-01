@@ -990,6 +990,133 @@
     }
   });
 
+  /* ============ MARKDOWN EXPORT (전체 내용 다운로드) ============ */
+  /* 모든 장·아티클·본문 블록을 읽기 좋은 단일 Markdown 문서로 직렬화한다.
+     accuracy 같은 소스 전용 메타데이터는 본문에 포함하지 않는다(프론트 비노출 원칙). */
+  function mdInline(s) { return (s == null ? '' : String(s)).replace(/\r?\n/g, ' ').trim(); }
+
+  function blockToMarkdown(b) {
+    if (!b) return '';
+    switch (b.type) {
+      case 'heading':
+        return '#### ' + mdInline(b.value);
+      case 'text':
+        return mdInline(b.value);
+      case 'note':
+        return '> ' + mdInline(b.value);
+      case 'kv': {
+        var kv = b.title ? '**' + mdInline(b.title) + '**\n' : '';
+        kv += (b.items || []).map(function (it) {
+          return '- **' + mdInline(it.label) + '** — ' + mdInline(it.value);
+        }).join('\n');
+        return kv;
+      }
+      case 'stats':
+        return (b.items || []).map(function (it) {
+          return '- **' + mdInline(it.number) + (it.suffix ? mdInline(it.suffix) : '') + '** — ' + mdInline(it.label);
+        }).join('\n');
+      case 'structure':
+        return (b.items || []).map(function (it) {
+          return '- **' + mdInline(it.label) + '**' + (it.tag ? ' (' + mdInline(it.tag) + ')' : '') + (it.desc ? ' — ' + mdInline(it.desc) : '');
+        }).join('\n');
+      case 'steprail': {
+        var sr = b.title ? '**' + mdInline(b.title) + '**\n' : '';
+        sr += (b.items || []).map(function (it, i) {
+          return (i + 1) + '. **' + mdInline(it.label) + '**' + (it.tag ? ' (' + mdInline(it.tag) + ')' : '') + (it.desc ? ' — ' + mdInline(it.desc) : '');
+        }).join('\n');
+        return sr;
+      }
+      case 'region-table':
+        return (b.regions || []).map(function (r) {
+          var areas = (r.areas || []).map(function (a) {
+            return mdInline(a.name) + (a.fee ? ' (+' + (a.fee / 10000) + '만)' : '');
+          }).join(', ');
+          return '- **' + mdInline(r.name) + '**: ' + areas;
+        }).join('\n');
+      case 'image':
+        return '![' + mdInline(b.alt) + '](' + mdInline(b.src) + ')';
+      default:
+        return '';
+    }
+  }
+
+  function exportGuideMarkdown() {
+    if (!systemData) return Promise.resolve('');
+    var chapters = systemData.chapters || [];
+    return Promise.all(chapters.map(function (ch) {
+      return loadChapter(ch.id).catch(function () { return null; });
+    })).then(function (loaded) {
+      var out = [];
+      out.push('# ' + (systemData.fullName || '꽃배달 이용 가이드'));
+
+      var head = [];
+      if (systemData.tagline) head.push('> ' + systemData.tagline);
+      head.push('> 버전 v' + (systemData.version || '') + ' · 전체 ' + chapters.length + '개 장'
+        + ((systemData.counts && systemData.counts.articles) ? ' · ' + systemData.counts.articles + '개 아티클' : ''));
+      out.push(head.join('\n>\n'));
+      out.push('---');
+
+      out.push('## 차례\n\n' + chapters.map(function (ch) {
+        return '- **' + ch.num + '.** ' + ch.title + (ch.subtitle ? ' — ' + ch.subtitle : '');
+      }).join('\n'));
+      out.push('---');
+
+      chapters.forEach(function (ch, i) {
+        var data = loaded[i];
+        var sec = ['## ' + ch.num + '. ' + ch.title];
+        if (ch.subtitle) sec.push('*' + ch.subtitle + '*');
+        if (data && data.summary) sec.push(data.summary);
+        if (data && data.objective) sec.push('> **학습 목표** · ' + data.objective);
+        out.push(sec.join('\n\n'));
+
+        ((data && data.articles) || []).forEach(function (art) {
+          var a = ['### ' + ch.num + '.' + art.num + ' · ' + art.title];
+          if (art.summary) a.push('*' + art.summary + '*');
+          (art.blocks || []).forEach(function (b) {
+            var md = blockToMarkdown(b);
+            if (md) a.push(md);
+          });
+          out.push(a.join('\n\n'));
+        });
+        out.push('---');
+      });
+
+      return out.join('\n\n') + '\n';
+    });
+  }
+
+  function downloadAllContent() {
+    var btn = document.getElementById('download-all-btn');
+    var label = btn ? btn.querySelector('.download-all-label') : null;
+    var original = label ? label.textContent : null;
+    if (btn) btn.disabled = true;
+    if (label) label.textContent = '정리하는 중…';
+    return exportGuideMarkdown().then(function (md) {
+      var base = (systemData && systemData.fullName ? systemData.fullName : '꽃배달 이용 가이드').replace(/\s+/g, '-');
+      var name = base + '-v' + ((systemData && systemData.version) || '') + '.md';
+      var blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () {
+        if (a.parentNode) a.parentNode.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 120);
+      return md;
+    }).catch(function (e) {
+      try { console.error('전체 내용 다운로드 생성 실패', e); } catch (x) { /* noop */ }
+      return '';
+    }).then(function (md) {
+      if (btn) btn.disabled = false;
+      if (label && original != null) label.textContent = original;
+      return md;
+    });
+  }
+  window.downloadAllContent = downloadAllContent;
+
   /* ============ INIT ============ */
   window.addEventListener('hashchange', route);
 

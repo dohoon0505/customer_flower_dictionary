@@ -52,6 +52,7 @@ if (!Array.isArray(system.releases)) {
 const chapters = system.chapters || [];
 const registeredIds = new Set(chapters.map(c => c.id));
 let totalArticles = 0;
+let accArticles = 0, acc100Articles = 0, accBlocks = 0, acc100Blocks = 0;
 
 for (const ch of chapters) {
   if (!ch.id) { fail('chapter에 id 없음'); continue; }
@@ -75,6 +76,28 @@ for (const ch of chapters) {
     warn(ch.id + ': articles 배열이 비어 있음 (콘텐츠 미작성)');
   } else {
     ok(ch.id + ' — ' + articles.length + '개 아티클');
+  }
+
+  // accuracy(정확도) 메타데이터 검증 — 소스 전용이며 프론트에는 렌더링하지 않음.
+  // 100 = 논문(저자 직접 작성·검증), 0~99 = 리서치 기반 추정 정확도.
+  for (const a of articles) {
+    if (a.accuracy === undefined) {
+      warn(ch.id + '/' + a.id + ': article accuracy 누락 (모든 아티클은 정확도를 표기)');
+    } else if (!Number.isInteger(a.accuracy) || a.accuracy < 0 || a.accuracy > 100) {
+      fail(ch.id + '/' + a.id + ': article accuracy 범위 오류 (' + a.accuracy + ') — 0~100 정수여야 함');
+    } else {
+      accArticles++;
+      if (a.accuracy === 100) acc100Articles++;
+    }
+    for (const b of (Array.isArray(a.blocks) ? a.blocks : [])) {
+      if (b.accuracy === undefined) continue;
+      if (!Number.isInteger(b.accuracy) || b.accuracy < 0 || b.accuracy > 100) {
+        fail(ch.id + '/' + a.id + ': block accuracy 범위 오류 (' + b.accuracy + ') — 0~100 정수여야 함');
+      } else {
+        accBlocks++;
+        if (b.accuracy === 100) acc100Blocks++;
+      }
+    }
   }
 }
 
@@ -111,5 +134,6 @@ if (existsSync(analysesDir)) {
 console.log('\n' + info.join('\n'));
 if (warns.length) console.log('\n' + warns.join('\n'));
 if (errors.length) console.log('\n' + errors.join('\n'));
+console.log('\n정확도(소스 전용): 아티클 ' + accArticles + '/' + totalArticles + ' 표기 (논문 100% ' + acc100Articles + '개) · 블록 ' + accBlocks + '개 표기 (논문 100% ' + acc100Blocks + '개)');
 console.log('\n결과: ' + info.length + ' OK / ' + warns.length + ' warn / ' + errors.length + ' error');
 process.exit(errors.length ? 1 : 0);

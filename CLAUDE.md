@@ -38,6 +38,7 @@
 ### CSS 토큰
 - Primitive: `--p-{family}-{step}` (예: `--p-rose-500`, `--p-sage-300`, `--p-neutral-80`)
 - Semantic: `--sm-{role}-{variant}` (예: `--sm-content-brand`, `--sm-interactive-accent-subtle`)
+- 뱃지 타이포: 모든 태그·뱃지는 `--badge-font`(600·12px·Pretendard) + `--badge-tracking`(-0.01em)를 공유. 새 뱃지도 개별 `font`를 쓰지 말고 이 토큰을 따른다.
 
 ### JavaScript
 - ES6+ vanilla, 외부 의존성 없음
@@ -47,6 +48,13 @@
 ### 본문 블록
 지원 타입: `heading`, `text`, `note`, `kv`, `stats`, `structure`, `steprail`, `region-table`, `image`, `image-slot`.
 새 타입을 추가할 때는 `assets/js/main.js`의 `renderBlock()` 분기와 `assets/css/main.css`의 `.blk-*` 스타일을 같이 추가.
+
+### 정확도(accuracy) 메타데이터 — 소스 전용, 프론트 비노출
+아티클(`articles[].accuracy`)과 본문 블록(`blocks[].accuracy`)은 선택적 `accuracy`(0~100 정수)를 가집니다. **데이터(소스)에만 저장하며 UI에는 절대 렌더링하지 않습니다.**
+- **100** = 1차 자료(논문 등 저자가 직접 작성·검증)에서 온 사실.
+- **0~99** = "정보의 바다"에서 습득한 자료를 다양한 리서치로 교차검증해 추정한 정확도.
+- 아티클 `accuracy`는 글 전체의 대표 신뢰도, 블록 `accuracy`는 그 블록(사실 단위)의 신뢰도. 순수 상호참조(내비) 노트에는 부여하지 않습니다.
+- 값은 `chapter.json`에만 존재하고 `renderBlock()`·검색 인덱스는 이를 읽거나 표시하지 않습니다(향후 블록 추가 시에도 비노출 유지).
 
 ## 안전 / 보안
 - `chapter.json`의 사용자 제공 텍스트(`title`, `summary`, `value` 등)는 모두 escape 후 렌더링.
@@ -64,6 +72,7 @@ node scripts/validate.mjs
 - 필수 필드 누락 → error
 - `articles` 배열이 비어 있으면 warning (콘텐츠 미작성 신호)
 - `counts.articles`와 실제 아티클 수가 다르면 warning
+- 아티클/블록 `accuracy`가 0~100 정수가 아니면 error, 아티클에 `accuracy`가 없으면 warning (표기율·논문 100% 개수도 집계)
 
 ## 브라우저 호환
 - 최신 evergreen (Chrome, Firefox, Safari, Edge)

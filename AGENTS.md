@@ -33,7 +33,7 @@
 1. 대상 챕터 결정 (`system.json.chapters[]`에서 선택)
 2. `analyses/{chapter-id}/chapter.json` 의 `articles[]` 배열에 새 항목 추가
    - 필수: `id`, `num`, `title`, `summary`, `blocks`
-   - 권장: `readTime`
+   - 권장: `readTime`, `accuracy`(0~100, 소스 전용 — 아래 "정확도 메타데이터" 참고)
 3. `node scripts/validate.mjs` 실행
 4. `system.json.counts.articles` 갱신
 
@@ -72,6 +72,19 @@
 | `image` | 실제 이미지 (src/alt/caption) |
 | `image-slot` | 이미지 삽입 예정 placeholder + 디자인 가이드(guide) |
 
+각 블록·아티클은 선택적 `accuracy`(0~100 정수)도 가질 수 있습니다 — 아래 참고.
+
+---
+
+## 정확도(accuracy) 메타데이터 — 소스 전용
+
+아티클(`articles[].accuracy`)과 본문 블록(`blocks[].accuracy`)에 0~100 정수로 부여. **데이터에만 저장하고 프론트(UI)에는 절대 렌더링하지 않습니다.**
+
+- **100** = 논문 등 1차 자료에서 저자가 직접 작성·검증한 사실.
+- **0~99** = "정보의 바다"에서 습득한 자료를 리서치로 교차검증해 추정한 정확도.
+- 아티클 = 글 전체 대표 신뢰도, 블록 = 사실 단위 신뢰도. 순수 상호참조(내비) 노트에는 생략.
+- `node scripts/validate.mjs` 가 범위(0~100 정수)·표기율·논문 100% 개수를 검증·집계.
+
 ---
 
 ## 파일 구조
@@ -104,3 +117,4 @@ flower_dictionary/
 3. **사용자 입력 미이스케이프** — title, summary 등은 반드시 `escapeHtml()` 적용 (JS에서 자동).
 4. **외부 링크에 noopener 누락** — `target="_blank" rel="noopener noreferrer"` 필수.
 5. **릴리즈 type 오타** — `add`(X) / `added`(O), `improve`(X) / `improved`(O) 등.
+6. **정확도(accuracy)를 화면에 노출** — accuracy는 소스 전용 메타데이터. `renderBlock()` 등에서 렌더링 금지.
