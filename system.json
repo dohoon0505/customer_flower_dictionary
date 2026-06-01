@@ -2,8 +2,8 @@
   "name": "flower-usage-guide",
   "fullName": "꽃배달 이용 가이드",
   "shortName": "꽃가이드",
-  "version": "2.0.0",
-  "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상황별 꽃 고르기, 배송비·시간, 리본 문구, 취소·환불, 문제 해결까지 주문 여정 순서로 정리했습니다.",
+  "version": "3.1.0",
+  "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성, 상황별 추천, 꽃말·기념일, 리본 문구, 주문·결제, 배송, 관리법, 취소·환불, FAQ 50선, 용어사전까지 주문 여정 순서로 정리했습니다.",
   "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
   "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
   "entry": {
@@ -17,66 +17,140 @@
       "num": "01",
       "title": "꽃배달이 처음이라면",
       "subtitle": "전국꽃배달이 움직이는 방식",
-      "desc": "쿠팡과 다른 배달 구조 · 주문부터 도착까지 5단계.",
+      "desc": "전국꽃배달 구조 · 주문부터 도착까지 5단계.",
       "icon": "i-store",
       "data": "analyses/getting-started/chapter.json"
     },
     {
-      "id": "choosing-flowers",
+      "id": "products",
       "num": "02",
-      "title": "상황별 꽃 고르기",
-      "subtitle": "장례·축하·란·식물·바구니·다발",
-      "desc": "어떤 상황에 무엇을 보낼지, 예산과 고를 때 주의점.",
+      "title": "상품별 특성 알아보기",
+      "subtitle": "상품 7종 · 종류·가격·고르기 포인트",
+      "desc": "근조·축하화환, 개업화분, 동양란, 서양란, 꽃다발, 꽃바구니 상세.",
       "icon": "i-leaf",
-      "data": "analyses/choosing-flowers/chapter.json"
+      "data": "analyses/products/chapter.json"
     },
     {
-      "id": "price-and-fees",
+      "id": "situations",
       "num": "03",
-      "title": "가격과 배송비",
-      "subtitle": "배송비가 붙는 이유 · 담합지역",
-      "desc": "왜 배송비가 발생하는지와 우리 동네 추가 요금 확인법.",
-      "icon": "i-tag",
-      "data": "analyses/price-and-fees/chapter.json"
+      "title": "상황별 상품 추천",
+      "subtitle": "7가지 상황 · 무엇을 어떻게 보낼까",
+      "desc": "장례·결혼·개업·이취임·출산·생일·칠순 추천.",
+      "icon": "i-target",
+      "data": "analyses/situations/chapter.json"
     },
     {
-      "id": "timing-and-delivery",
+      "id": "flower-meanings",
       "num": "04",
-      "title": "시간 맞춰 받기",
-      "subtitle": "3시간 룰 · 예약 · 지연",
-      "desc": "언제까지 주문해야 하는지와 배송이 늦어질 때 대처.",
-      "icon": "i-truck",
-      "data": "analyses/timing-and-delivery/chapter.json"
+      "title": "꽃말과 색상의 의미",
+      "subtitle": "색상·꽃말·장미 송이 수",
+      "desc": "색상이 전하는 분위기, 주요 꽃 꽃말, 장미 송이 수.",
+      "icon": "i-heart",
+      "data": "analyses/flower-meanings/chapter.json"
+    },
+    {
+      "id": "occasions",
+      "num": "05",
+      "title": "기념일 캘린더",
+      "subtitle": "12개월 캘린더·14일 데이·가정의 달",
+      "desc": "월별 꽃 수요 캘린더와 14일 데이·5월 가정의 달.",
+      "icon": "i-megaphone",
+      "data": "analyses/occasions/chapter.json"
     },
     {
       "id": "messages-ribbon",
-      "num": "05",
-      "title": "메시지와 리본 문구",
-      "subtitle": "근조·축하·기념일 문구",
-      "desc": "상황별 리본·카드 문구를 어떻게 쓸지 예시로 정리.",
+      "num": "06",
+      "title": "리본 · 카드 메시지 문구",
+      "subtitle": "리본 구성·축하·근조 문구",
+      "desc": "리본 구성과 축하·근조 문구 예시 모음.",
       "icon": "i-receipt",
       "data": "analyses/messages-ribbon/chapter.json"
     },
     {
-      "id": "change-cancel-refund",
-      "num": "06",
-      "title": "바꾸거나 취소할 때",
-      "subtitle": "취소·환불·문구 변경",
-      "desc": "취소·환불 가능 시점과 수수료, 내용 변경 범위.",
-      "icon": "i-corner-down-left",
-      "data": "analyses/change-cancel-refund/chapter.json"
+      "id": "ordering-payment",
+      "num": "07",
+      "title": "주문하고 결제하기",
+      "subtitle": "주문 방법·필요 정보·결제·증빙",
+      "desc": "주문 방법, 미리 챙길 정보, 결제 수단·증빙·할인.",
+      "icon": "i-tag",
+      "data": "analyses/ordering-payment/chapter.json"
     },
     {
-      "id": "when-problems",
-      "num": "07",
-      "title": "문제가 생겼을 때",
-      "subtitle": "사진과 다를 때 · 문의 방법",
-      "desc": "받은 꽃이 기대와 다를 때 어떻게 문의하고 해결하나.",
+      "id": "delivery",
+      "num": "08",
+      "title": "시간 맞춰 배송 받기",
+      "subtitle": "마감·지역·시간지정·장소별 주의",
+      "desc": "당일배송 마감·지역·시간 지정·장소별 주의.",
+      "icon": "i-truck",
+      "data": "analyses/delivery/chapter.json"
+    },
+    {
+      "id": "flower-care",
+      "num": "09",
+      "title": "받은 꽃 오래 보기",
+      "subtitle": "생화·난·관엽식물·보존화",
+      "desc": "생화·난·관엽식물·보존화 종류별 관리법.",
+      "icon": "i-package",
+      "data": "analyses/flower-care/chapter.json"
+    },
+    {
+      "id": "cancel-refund",
+      "num": "10",
+      "title": "취소 · 환불 · 품질 보상",
+      "subtitle": "취소 시점·하자 보상·사진 차이",
+      "desc": "취소·환불 시점, 하자 보상, 사진과의 차이.",
+      "icon": "i-corner-down-left",
+      "data": "analyses/cancel-refund/chapter.json"
+    },
+    {
+      "id": "faq",
+      "num": "11",
+      "title": "자주 묻는 질문 50선",
+      "subtitle": "주문·배송·상품·화환·문구",
+      "desc": "주문·배송·상품·화환·문구 50가지 질문과 답.",
       "icon": "i-shield",
-      "data": "analyses/when-problems/chapter.json"
+      "data": "analyses/faq/chapter.json"
+    },
+    {
+      "id": "glossary",
+      "num": "12",
+      "title": "꽃배달 용어 사전",
+      "subtitle": "헷갈리기 쉬운 용어 정리",
+      "desc": "절화·후다지·오아시스 등 용어 풀이.",
+      "icon": "i-book",
+      "data": "analyses/glossary/chapter.json"
     }
   ],
   "releases": [
+    {
+      "version": "3.1.0",
+      "date": "2026-06-01",
+      "title": "상품별·상황별 챕터 신설 + 구 02 흡수 정리",
+      "tag": "MINOR",
+      "highlight": "상품을 하나씩 깊이 보는 '상품별 특성 알아보기'와, 보낼 자리가 정해졌을 때 바로 찾는 '상황별 상품 추천' 두 챕터를 새로 만들었습니다. 둘과 크게 겹치던 '무엇을 보낼까·상품 안내'(구 02)는 두 챕터로 흡수해 삭제하고, '기념일·상황별'의 경조사 아티클도 상황별 추천으로 병합했습니다. 전체 12개 장 47개 아티클.",
+      "changes": [
+        { "type": "added", "value": "신설 '상품별 특성 알아보기' — 근조화환·축하화환·개업화분·동양란·서양란·꽃다발·꽃바구니 7개 상품 상세(종류·가격대·고르기 포인트)" },
+        { "type": "added", "value": "신설 '상황별 상품 추천' — 장례식장·결혼식장·개업식당·이취임식·출산축하·생일축하·칠순잔치 7개 상황(추천 상품·예산·문구·도착 주의)" },
+        { "type": "changed", "value": "'무엇을 보낼까·상품 안내'(구 02) 흡수·삭제 — 상품 내용은 '상품별 특성'으로, 상황별 표는 '상황별 상품 추천'으로 병합" },
+        { "type": "changed", "value": "'기념일·상황별 꽃 선물' → '기념일 캘린더'로 정리 — '경조사·인생 이벤트별 추천' 아티클을 '상황별 상품 추천'으로 병합" },
+        { "type": "changed", "value": "목차 11→12개 장으로 재번호 — 상품·상황 챕터를 '꽃배달이 처음이라면' 다음(02·03)에 배치" }
+      ]
+    },
+    {
+      "version": "3.0.0",
+      "date": "2026-06-01",
+      "title": "완전판 콘텐츠 탑재 — 11개 장 39개 아티클",
+      "tag": "MAJOR",
+      "highlight": "온라인 꽃배달 완전판 자료집(12부)을 고객용 가이드로 재구성했습니다. 비어 있던 골격 장에 실제 본문을 채우고, 꽃말·기념일·관리법·FAQ·용어사전 장을 새로 더해 서비스 이해부터 상품·문구·주문·배송·취소환불까지 주문 여정 전체를 11개 장 39개 아티클로 담았습니다.",
+      "changes": [
+        { "type": "added", "value": "본문 39개 아티클 작성 — 11개 장 전체에 실제 콘텐츠 탑재(이전까지 빈 골격)" },
+        { "type": "added", "value": "신규 장 — 주문하고 결제하기 · 꽃말과 색상의 의미 · 기념일/상황별 꽃 선물 · 받은 꽃 오래 보기 · 자주 묻는 질문 50선 · 꽃배달 용어 사전" },
+        { "type": "changed", "value": "목차 7→11개 장으로 확장, 주문 여정 순서로 재배열(이해→고르기→꽃말→기념일→문구→주문→배송→관리→취소·환불→FAQ→용어)" },
+        { "type": "changed", "value": "'상황별 꽃 고르기' → '무엇을 보낼까·상품 안내'(상품 중심 재편), '시간 맞춰 받기' → '시간 맞춰 배송 받기'(배송 심화 확장)" },
+        { "type": "removed", "value": "'가격과 배송비'·'바꾸거나 취소할 때'·'문제가 생겼을 때' 장 정리 — 가격은 상품·배송 장으로, 취소/문제는 '취소·환불·품질 보상'과 'FAQ'로 흡수" },
+        { "type": "added", "value": "꽃말 사전·12개월 기념일 캘린더·장미 송이 수·상품 관리법 등 '완전판' 레퍼런스 반영" }
+      ]
+    },
     {
       "version": "2.0.0",
       "date": "2026-06-01",
@@ -165,8 +239,8 @@
     }
   ],
   "counts": {
-    "chapters": 7,
-    "articles": 0,
-    "releases": 7
+    "chapters": 12,
+    "articles": 47,
+    "releases": 9
   }
 }
