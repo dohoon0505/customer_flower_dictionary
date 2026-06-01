@@ -56,6 +56,9 @@
 - 아티클 `accuracy`는 글 전체의 대표 신뢰도, 블록 `accuracy`는 그 블록(사실 단위)의 신뢰도. 순수 상호참조(내비) 노트에는 부여하지 않습니다.
 - 값은 `chapter.json`에만 존재하고 `renderBlock()`·검색 인덱스는 이를 읽거나 표시하지 않습니다(향후 블록 추가 시에도 비노출 유지).
 
+### 관련 키워드(keywords) — 선택, 검색·표시용
+아티클은 선택적 `keywords`(문자열 배열)를 가질 수 있습니다. accuracy와 달리 **프론트에 노출되는 정상 메타데이터**로, 아티클 헤더에 태그(통일 뱃지 토큰 `--badge-font`)로 표시되고 통합검색 색인(haystack)에 포함됩니다. 표시는 `assets/js/main.js`의 `renderArticle()`, 검색 포함은 `buildSearchIndex()`에서 처리합니다.
+
 ## 안전 / 보안
 - `chapter.json`의 사용자 제공 텍스트(`title`, `summary`, `value` 등)는 모두 escape 후 렌더링.
 - 외부 링크는 `target="_blank" rel="noopener noreferrer"` 적용.

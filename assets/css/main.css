@@ -716,6 +716,25 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
   max-width: 720px; margin: 0 0 var(--size-500);
 }
 
+/* 관련 키워드 태그 (아티클 헤더) — 통일 뱃지 토큰 공유 */
+.report-keywords {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--size-200);
+  margin-top: var(--size-400);
+}
+.report-keywords-label {
+  font: var(--badge-font); letter-spacing: var(--badge-tracking);
+  color: var(--sm-content-tertiary);
+}
+.report-keyword {
+  font: var(--badge-font); letter-spacing: var(--badge-tracking);
+  color: var(--sm-content-secondary);
+  background: var(--sm-background-muted);
+  border: 1px solid var(--sm-border-subtle);
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+}
+
 .report-section-header {
   display: flex; align-items: baseline; gap: var(--size-400);
 }

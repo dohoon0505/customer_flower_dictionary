@@ -482,6 +482,13 @@
     if (art.summary) {
       h += '<p class="report-summary" style="margin-top:24px">' + escapeHtml(art.summary) + '</p>';
     }
+    if (art.keywords && art.keywords.length) {
+      h += '<div class="report-keywords"><span class="report-keywords-label">관련 키워드</span>';
+      art.keywords.forEach(function (kw) {
+        h += '<span class="report-keyword">' + escapeHtml(kw) + '</span>';
+      });
+      h += '</div>';
+    }
     h += '</div>';
 
     h += '<div class="report-blocks">';
@@ -793,7 +800,7 @@
               breadcrumb: chapterTitle + ' · ' + (art.num || '') + '. ',
               snippet: art.summary || '',
               route: 'chapter/' + meta.id + '/' + art.id,
-              haystack: [art.num, art.title, art.summary, blocksText, chapterTitle]
+              haystack: [art.num, art.title, art.summary, (art.keywords || []).join(' '), blocksText, chapterTitle]
                 .filter(Boolean).join(' ').toLowerCase()
             });
           });
