@@ -2,7 +2,7 @@
   "name": "flower-usage-guide",
   "fullName": "꽃배달 이용 가이드",
   "shortName": "꽃가이드",
-  "version": "3.9.2",
+  "version": "4.0.0",
   "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성, 상황별 추천, 꽃말·기념일, 리본 문구, 주문·결제, 배송, 관리법, 취소·환불, FAQ 50선, 용어사전까지 주문 여정 순서로 정리했습니다.",
   "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
   "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
@@ -122,6 +122,20 @@
     }
   ],
   "releases": [
+    {
+      "version": "4.0.0",
+      "date": "2026-06-02",
+      "title": "Pinterest 디자인 시스템 전면교체",
+      "tag": "MAJOR",
+      "highlight": "디자인 시스템을 Pinterest 스타일로 전면 교체했습니다. 따뜻한 크림 크롬(#fbfbf9·#f6f6f3·#ffffff) 위에 Pinterest 레드(#e60023)는 주요 CTA·로고·활성 상태에만 쓰고 장식적 빨강은 모두 걷어냈습니다. 모서리는 16/32/pill 세 값으로 통일하고 그림자는 모달 외 전부 제거(플랫), 타이포는 Inter(라틴)+Pretendard(한글)에 디스플레이 자간을 좁혀 Pin Sans 특유의 또렷한 헤드라인 톤을 냈습니다. 라이트·다크·모바일 모두 적용했습니다.",
+      "changes": [
+        { "type": "changed", "value": "팔레트 교체 — 크림 뉴트럴(#fbfbf9·#f6f6f3·#e5e5e0·#dadad3·#c8c8c1·#91918c·#62625b…) + Pinterest 레드 램프(#e60023/#cc001f). 프리미티브 토큰(--p-neutral-*·--p-rose-*) 값만 바꿔 전 컴포넌트에 반영" },
+        { "type": "changed", "value": "레드 스카시티 — 장식용 브랜드 컬러(챕터 eyebrow·섹션 번호·태그·키워드 등)를 뉴트럴로 전환, 레드는 CTA·로고·활성 내비에만(--sm-content-brand → neutral, --sm-interactive-brand-default = #e60023)" },
+        { "type": "changed", "value": "모서리 8/16/32/pill로 통일(--radius-*), 그림자 제거 — --elevation-1·2 = none, 모달만 16px ambient(플랫 디자인)" },
+        { "type": "changed", "value": "타이포 — Inter(Pin Sans 대체, 라틴) + Pretendard(한글) 스택, 디스플레이 자간 -0.022em·히어로 최대 68px로 확대해 또렷한 헤드라인" },
+        { "type": "added", "value": "index.html에 Inter 웹폰트(400·500·600·700) 로드, main.css 헤더 아트 디렉션 갱신" }
+      ]
+    },
     {
       "version": "3.9.2",
       "date": "2026-06-02",
@@ -377,6 +391,6 @@
   "counts": {
     "chapters": 12,
     "articles": 45,
-    "releases": 20
+    "releases": 21
   }
 }

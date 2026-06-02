@@ -1,50 +1,50 @@
 /* ================================================================
    꽃배달 이용 가이드 — Flower Delivery Usage Guide
-   v2.0.0 · 아트 디렉션: 따뜻한 안내소 (Warm Help-desk)
+   v4.0.0 · 아트 디렉션: Pinterest (크림 크롬 · 스카스 레드 · 16/32/pill · 플랫)
    ================================================================ */
 
 /* ============ DESIGN TOKENS ============ */
 :root {
-  /* Neutrals — warm paper → ink */
-  --p-neutral-0:   #FFFFFF;
-  --p-neutral-10:  #FBF8F4;
-  --p-neutral-20:  #F3EDE6;
-  --p-neutral-30:  #E7DFD7;
-  --p-neutral-40:  #D3C8BF;
-  --p-neutral-50:  #AE9F95;
-  --p-neutral-60:  #84746A;
-  --p-neutral-70:  #5C4E46;
-  --p-neutral-80:  #3D332D;
-  --p-neutral-85:  #2B2420;
-  --p-neutral-90:  #211A16;
-  --p-neutral-95:  #14100E;
-  --p-neutral-100: #0B0807;
+  /* Neutrals — warm cream → ink (Pinterest chrome) */
+  --p-neutral-0:   #ffffff;
+  --p-neutral-10:  #fbfbf9;
+  --p-neutral-20:  #f6f6f3;
+  --p-neutral-30:  #e5e5e0;
+  --p-neutral-40:  #dadad3;
+  --p-neutral-50:  #c8c8c1;
+  --p-neutral-60:  #91918c;
+  --p-neutral-70:  #62625b;
+  --p-neutral-80:  #33332e;
+  --p-neutral-85:  #262622;
+  --p-neutral-90:  #211f1c;
+  --p-neutral-95:  #1a1916;
+  --p-neutral-100: #000000;
 
-  /* Rose — primary palette */
-  --p-rose-50:  #FDF3F1;
-  --p-rose-100: #FAE2DD;
-  --p-rose-200: #F3C4BB;
-  --p-rose-300: #E79B8D;
-  --p-rose-400: #D96E5E;
-  --p-rose-500: #C4453F;
-  --p-rose-600: #A8362F;
-  --p-rose-700: #882823;
-  --p-rose-800: #631A17;
-  --p-rose-900: #3E0F0D;
+  /* Rose → Pinterest Red — primary CTA / active / brand only */
+  --p-rose-50:  #fde7ea;
+  --p-rose-100: #fbd0d6;
+  --p-rose-200: #f5a3ae;
+  --p-rose-300: #ef7080;
+  --p-rose-400: #e94d5f;
+  --p-rose-500: #e60023;
+  --p-rose-600: #cc001f;
+  --p-rose-700: #a8001a;
+  --p-rose-800: #800014;
+  --p-rose-900: #52000d;
 
-  /* Sage — accent palette */
-  --p-sage-50:  #F0F4EF;
-  --p-sage-100: #DBE5DA;
-  --p-sage-300: #A6BCA6;
-  --p-sage-500: #6E8B6F;
-  --p-sage-700: #4C6A50;
+  /* Sage — retired → neutral (legacy refs stay quiet) */
+  --p-sage-50:  #f6f6f3;
+  --p-sage-100: #e5e5e0;
+  --p-sage-300: #c8c8c1;
+  --p-sage-500: #91918c;
+  --p-sage-700: #62625b;
 
   /* Status */
   --p-amber-400: #F1B83E;
   --p-amber-500: #D99918;
-  --p-green-500: #4C6A50;
-  --p-red-500:   #C4453F;
-  --p-blue-500:  #4A6FA5;
+  --p-green-500: #103c25;
+  --p-red-500:   #9e0a0a;
+  --p-blue-500:  #435ee5;
 
   /* Semantic — Light */
   --sm-background-default:  var(--p-neutral-10);  /* 페이지 = 따뜻한 종이 */
@@ -58,7 +58,7 @@
   --sm-content-tertiary:  var(--p-neutral-60);
   --sm-content-disabled:  var(--p-neutral-50);
   --sm-content-inverse:   var(--p-neutral-0);
-  --sm-content-brand:     var(--p-rose-600);
+  --sm-content-brand:     var(--p-neutral-70);
 
   --sm-border-subtle:  var(--p-neutral-30);
   --sm-border-default: var(--p-neutral-40);
@@ -71,7 +71,7 @@
 
   --sm-interactive-brand-default: var(--p-rose-500);
   --sm-interactive-brand-hover:   var(--p-rose-600);
-  --sm-interactive-brand-subtle:  var(--p-rose-50);
+  --sm-interactive-brand-subtle:  var(--p-neutral-20);
   --sm-interactive-accent:        var(--p-sage-500);
   --sm-interactive-accent-subtle: var(--p-sage-50);
 
@@ -81,12 +81,12 @@
   --sm-status-warning: var(--p-amber-500);
 
   /* Typography */
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-mono: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: "Inter", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Inter", "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
 
   /* Badge·tag 통일 타이포 — 모든 태그/뱃지가 공유 (Pretendard 600 · 12px · 살짝 좁힌 자간) */
-  --badge-font: 600 12px/1 var(--font-mono);
-  --badge-tracking: -0.01em;
+  --badge-font: 700 12px/1 var(--font-sans);
+  --badge-tracking: 0;
 
   /* Sizing */
   --size-100: 4px;  --size-200: 8px;  --size-300: 12px;
@@ -95,13 +95,13 @@
   --size-1000: 64px; --size-1100: 80px;
 
   /* Radius */
-  --radius-xs: 4px; --radius-sm: 6px; --radius-md: 10px;
-  --radius-lg: 14px; --radius-xl: 20px; --radius-full: 9999px;
+  --radius-xs: 8px; --radius-sm: 8px; --radius-md: 16px;
+  --radius-lg: 16px; --radius-xl: 32px; --radius-full: 9999px;
 
   /* Elevation */
-  --elevation-1: 0 1px 2px rgba(31,24,21,0.04);
-  --elevation-2: 0 2px 8px rgba(31,24,21,0.06), 0 1px 2px rgba(31,24,21,0.04);
-  --elevation-3: 0 8px 24px rgba(31,24,21,0.08), 0 2px 6px rgba(31,24,21,0.04);
+  --elevation-1: none;
+  --elevation-2: none;
+  --elevation-3: 0 16px 40px rgba(0,0,0,0.16);
 
   /* Motion */
   --motion-fast: 120ms; --motion-base: 200ms; --motion-slow: 280ms;
@@ -113,10 +113,10 @@
 
 /* ============ DARK THEME ============ */
 [data-theme="dark"] {
-  --sm-background-default:  var(--p-neutral-100);
-  --sm-background-subtle:   var(--p-neutral-95);
+  --sm-background-default:  var(--p-neutral-95);
+  --sm-background-subtle:   var(--p-neutral-90);
   --sm-background-muted:    var(--p-neutral-90);
-  --sm-background-elevated: var(--p-neutral-90);
+  --sm-background-elevated: var(--p-neutral-85);
   --sm-background-inverse:  var(--p-neutral-0);
 
   --sm-content-primary:   var(--p-neutral-10);
@@ -124,7 +124,7 @@
   --sm-content-tertiary:  var(--p-neutral-50);
   --sm-content-disabled:  var(--p-neutral-70);
   --sm-content-inverse:   var(--p-neutral-100);
-  --sm-content-brand:     var(--p-rose-300);
+  --sm-content-brand:     var(--p-neutral-40);
 
   --sm-border-subtle:  var(--p-neutral-85);
   --sm-border-default: var(--p-neutral-80);
@@ -137,7 +137,7 @@
 
   --sm-interactive-brand-default: var(--p-rose-400);
   --sm-interactive-brand-hover:   var(--p-rose-300);
-  --sm-interactive-brand-subtle:  rgba(217,110,94,0.16);
+  --sm-interactive-brand-subtle:  rgba(230,0,35,0.18);
   --sm-interactive-accent:        var(--p-sage-300);
   --sm-interactive-accent-subtle: rgba(166,188,166,0.14);
 
@@ -146,9 +146,9 @@
   --sm-status-info:    #7AA0D9;
   --sm-status-warning: var(--p-amber-400);
 
-  --elevation-1: 0 1px 2px rgba(0,0,0,0.32);
-  --elevation-2: 0 2px 8px rgba(0,0,0,0.40), 0 1px 2px rgba(0,0,0,0.32);
-  --elevation-3: 0 8px 24px rgba(0,0,0,0.48), 0 2px 6px rgba(0,0,0,0.32);
+  --elevation-1: none;
+  --elevation-2: none;
+  --elevation-3: 0 16px 40px rgba(0,0,0,0.55);
 }
 
 /* ============ RESET + BASE ============ */
@@ -495,8 +495,8 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
 }
 [data-theme="dark"] .hero-ver { color: var(--p-sage-300); }
 .hero h1 {
-  font: 700 clamp(40px, 5vw, 56px)/1.08 var(--font-sans);
-  letter-spacing: -0.015em;
+  font: 700 clamp(44px, 6vw, 68px)/1.05 var(--font-sans);
+  letter-spacing: -0.022em;
   margin: 0 0 var(--size-500); max-width: 820px;
 }
 .hero .hero-desc {
@@ -702,8 +702,8 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
 }
 .report-date { color: var(--sm-content-tertiary); }
 .report-title {
-  font: 700 clamp(28px, 4vw, 40px)/1.18 var(--font-sans);
-  letter-spacing: -0.015em;
+  font: 700 clamp(28px, 4vw, 42px)/1.12 var(--font-sans);
+  letter-spacing: -0.025em;
   margin: 0 0 var(--size-400);
 }
 .report-summary {
@@ -741,12 +741,12 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
 }
 .report-section-header-num {
   font: 700 clamp(40px, 5vw, 56px)/1 var(--font-mono);
-  color: var(--p-rose-400);
+  color: var(--p-neutral-60);
   letter-spacing: -0.015em;
   flex-shrink: 0;
 }
 [data-theme="dark"] .report-section-header-num {
-  color: rgba(217,110,94,0.6);
+  color: var(--p-neutral-50);
 }
 
 /* Objective callout */
@@ -1636,7 +1636,7 @@ body[data-zoom="large"] { zoom: 1.2; }
    body copy still grow even if spacing stays put. */
 @supports not (zoom: 1) {
   body[data-zoom="large"] { font-size: 18px; }
-  body[data-zoom="large"] .hero h1 { font-size: clamp(48px, 6vw, 64px); }
+  body[data-zoom="large"] .hero h1 { font-size: clamp(52px, 7vw, 82px); }
   body[data-zoom="large"] .hero-desc { font-size: 19px; }
   body[data-zoom="large"] .home-section-title { font-size: clamp(28px, 3.4vw, 36px); }
   body[data-zoom="large"] .home-section-desc { font-size: 17px; }

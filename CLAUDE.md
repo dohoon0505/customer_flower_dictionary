@@ -38,7 +38,8 @@
 ### CSS 토큰
 - Primitive: `--p-{family}-{step}` (예: `--p-rose-500`, `--p-sage-300`, `--p-neutral-80`)
 - Semantic: `--sm-{role}-{variant}` (예: `--sm-content-brand`, `--sm-interactive-accent-subtle`)
-- 뱃지 타이포: 모든 태그·뱃지는 `--badge-font`(600·12px·Pretendard) + `--badge-tracking`(-0.01em)를 공유. 새 뱃지도 개별 `font`를 쓰지 말고 이 토큰을 따른다.
+- **아트 디렉션(v4.0 · Pinterest)**: 크림 뉴트럴 + Pinterest 레드(`#e60023`). 레드는 주요 CTA·로고·활성 내비에만 쓰고 장식(섹션 번호·eyebrow·태그·키워드)에는 뉴트럴을 쓴다. 모서리는 16/32/pill 세 값(`--radius-md`/`--radius-xl`/`--radius-full`), 그림자는 모달만(나머지 플랫). 폰트는 Inter(라틴)+Pretendard(한글).
+- 뱃지 타이포: 모든 태그·뱃지는 `--badge-font`(700·12px·Inter/Pretendard) + `--badge-tracking`(0)를 공유. 새 뱃지도 개별 `font`를 쓰지 말고 이 토큰을 따른다.
 
 ### JavaScript
 - ES6+ vanilla, 외부 의존성 없음
