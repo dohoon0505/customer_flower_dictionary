@@ -194,7 +194,7 @@ body {
   border-radius: 50%;
 }
 .topbar-nav {
-  display: flex; gap: var(--size-400); align-items: center;
+  display: flex; gap: var(--size-400); align-items: center; flex: 1;
 }
 .topbar-link {
   font: 500 13px/1 var(--font-sans);
@@ -231,6 +231,7 @@ body {
 .search-trigger {
   padding: 7px 10px 7px 12px;
   min-width: 220px;
+  margin-right: auto;
 }
 .search-trigger-text {
   color: var(--sm-content-secondary);
@@ -450,6 +451,7 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
   .sidebar.is-open { transform: translateX(0); }
   .sidebar-scrim.is-open { display: block; }
   .sidebar-toggle { display: inline-flex; }
+  .topbar-inner { padding-left: 64px; }
 }
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 var(--size-700); }
@@ -1388,7 +1390,7 @@ footer {
   .zoom-toggle { padding: 8px 10px; }
   .search-trigger-text,
   .search-trigger-kbd { display: none; }
-  .search-trigger { padding: 8px 10px; }
+  .search-trigger { padding: 8px 10px; min-width: 0; }
 }
 
 /* ============ MOBILE TOUCH TARGET TWEAKS ============ */
