@@ -173,12 +173,8 @@ body {
 .topbar-inner {
   max-width: 1240px; margin: 0 auto;
   padding: var(--size-400) var(--size-700);
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: flex-end;
   gap: var(--size-500);
-}
-.brand {
-  display: flex; align-items: center; gap: var(--size-300);
-  text-decoration: none; color: var(--sm-content-primary);
 }
 .brand-mark {
   width: 36px; height: 36px;
@@ -197,7 +193,6 @@ body {
   background: var(--p-sage-300);
   border-radius: 50%;
 }
-.brand-text { font-weight: 700; letter-spacing: -0.015em; font-size: 16px; }
 .topbar-nav {
   display: flex; gap: var(--size-400); align-items: center;
 }
@@ -455,7 +450,6 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
   .sidebar.is-open { transform: translateX(0); }
   .sidebar-scrim.is-open { display: block; }
   .sidebar-toggle { display: inline-flex; }
-  .topbar-inner .brand { margin-left: 48px; }
 }
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 var(--size-700); }
@@ -745,12 +739,12 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
 }
 .report-section-header-num {
   font: 700 clamp(40px, 5vw, 56px)/1 var(--font-mono);
-  color: var(--sm-interactive-brand-subtle);
+  color: var(--p-rose-400);
   letter-spacing: -0.015em;
   flex-shrink: 0;
 }
 [data-theme="dark"] .report-section-header-num {
-  color: rgba(217,110,94,0.22);
+  color: rgba(217,110,94,0.6);
 }
 
 /* Objective callout */
@@ -1098,7 +1092,7 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
 .blk-kv--col2 .blk-kv-item:nth-last-child(1),
 .blk-kv--col2 .blk-kv-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
 .blk-kv-item dt {
-  font: 700 11px/1.2 var(--font-mono);
+  font: 700 13px/1.2 var(--font-mono);
   color: var(--sm-content-brand);
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1389,7 +1383,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .brand-text { display: none; }
   .topbar-link { display: none; }
   .zoom-toggle .zoom-text { display: none; }
   .zoom-toggle { padding: 8px 10px; }
