@@ -734,6 +734,11 @@ svg.ico { width: 24px; height: 24px; display: inline-block; flex-shrink: 0; vert
   padding: 5px 11px;
   border-radius: var(--radius-full);
 }
+.report-keyword--more {
+  background: none;
+  border-color: transparent;
+  color: var(--sm-content-tertiary);
+}
 
 .report-section-header {
   display: flex; align-items: baseline; gap: var(--size-400);

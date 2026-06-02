@@ -33,7 +33,7 @@
 1. 대상 챕터 결정 (`system.json.chapters[]`에서 선택)
 2. `analyses/{chapter-id}/chapter.json` 의 `articles[]` 배열에 새 항목 추가
    - 필수: `id`, `num`, `title`, `summary`, `blocks`
-   - 권장: `readTime`, `accuracy`(0~100, 소스 전용 — 아래 "정확도 메타데이터" 참고), `keywords`(검색·표시용 문자열 배열, 헤더 태그로 노출)
+   - 권장: `readTime`, `accuracy`(0~100, 소스 전용 — 아래 "정확도 메타데이터" 참고), `keywords`(검색·표시용 문자열 배열 — 헤더에 상위 16개 태그 노출·나머지 `외 N개`로 접힘, 전체는 검색 색인에 포함)
 3. `node scripts/validate.mjs` 실행
 4. `system.json.counts.articles` 갱신
 

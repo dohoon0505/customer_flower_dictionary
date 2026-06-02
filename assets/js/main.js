@@ -484,9 +484,13 @@
     }
     if (art.keywords && art.keywords.length) {
       h += '<div class="report-keywords"><span class="report-keywords-label">관련 키워드</span>';
-      art.keywords.forEach(function (kw) {
+      var KW_SHOWN = 16; // 헤더에는 대표 키워드만 노출, 전체는 검색 색인(buildSearchIndex)에 포함
+      art.keywords.slice(0, KW_SHOWN).forEach(function (kw) {
         h += '<span class="report-keyword">' + escapeHtml(kw) + '</span>';
       });
+      if (art.keywords.length > KW_SHOWN) {
+        h += '<span class="report-keyword report-keyword--more">외 ' + (art.keywords.length - KW_SHOWN) + '개</span>';
+      }
       h += '</div>';
     }
     h += '</div>';
