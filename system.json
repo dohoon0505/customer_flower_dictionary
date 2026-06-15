@@ -2,7 +2,7 @@
   "name": "flower-usage-guide",
   "fullName": "꽃배달 이용 가이드",
   "shortName": "꽃가이드",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성, 상황별 추천, 꽃말·기념일, 리본 문구, 주문·결제, 배송, 관리법, 취소·환불, FAQ 50선, 용어사전까지 주문 여정 순서로 정리했습니다.",
   "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
   "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
@@ -122,6 +122,19 @@
     }
   ],
   "releases": [
+    {
+      "version": "4.1.0",
+      "date": "2026-06-15",
+      "title": "임베드형 상담 챗봇 위젯 신설",
+      "tag": "MINOR",
+      "highlight": "어느 웹사이트든 한 줄(`<script src=\".../assets/chatbot/embed.js\">`)만 넣으면 우하단 '상담하기' 버튼과 우측 슬라이드 패널(iframe 챗봇)이 설치되는 상담 챗봇을 새로 만들었습니다. 챗봇은 별도 데이터 없이 이 가이드의 system.json·전 챕터 chapter.json을 그대로 읽어 지식베이스를 만들기 때문에 가이드를 고치면 답변도 함께 최신화됩니다. 답변 엔진은 백엔드·API 키 없이 브라우저에서 동작하는 한국어 검색(조사·어미 stemming + IDF 희소어 가중 + 가격 의도 감지)이며, 원하면 LLM 백엔드(`data-api`)로도 연결할 수 있습니다. 가이드 자체(index.html)에도 같은 위젯을 달았고, 라이트·다크·모바일 전체화면을 지원합니다.",
+      "changes": [
+        { "type": "added", "value": "상담 챗봇 본체 — `chatbot.html` + `assets/chatbot/chatbot.css`·`chatbot.js`. iframe 안에서 단독 동작하며 Pinterest 팔레트(크림+레드)로 가이드와 톤 통일, 인사말·관련질문 칩·연락처(전화 1668-1840·카카오톡·dorangflower.com)·가이드 원문 링크 제공" },
+        { "type": "added", "value": "한 줄 임베드 설치 스크립트 — `assets/chatbot/embed.js`. 자기 위치에서 chatbot.html 경로를 자동 도출(타 도메인 임베드 대응), 우하단 FAB + 우측 슬라이드 패널 주입, `data-title`·`data-label`·`data-accent`·`data-position`·`data-api`·`data-open` 옵션, `window.FlowerChat.open/close/toggle` API, ESC·닫기 postMessage" },
+        { "type": "added", "value": "클라이언트 답변 엔진 — FAQ 91문항과 전 챕터 본문 블록(structure·steprail·kv·stats·text·note·region-table)을 Q&A로 색인, 한국어 조사·동사어미 stemming·불용어·IDF·글자 바이그램·가격 의도 보정으로 랭킹. 데이터 로드 실패 시 최소 KB로 폴백" },
+        { "type": "added", "value": "설치 데모/사용법 페이지 `chatbot-demo.html` 추가, 가이드 `index.html`에도 위젯 임베드(`assets/chatbot/embed.js`)" }
+      ]
+    },
     {
       "version": "4.0.0",
       "date": "2026-06-02",
@@ -391,6 +404,6 @@
   "counts": {
     "chapters": 12,
     "articles": 45,
-    "releases": 21
+    "releases": 22
   }
 }

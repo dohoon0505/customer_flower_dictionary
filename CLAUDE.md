@@ -4,7 +4,7 @@
 
 ## 프로젝트 개요
 
-온라인으로 꽃배달을 주문하려는 분, 특히 주문이 처음이라 막막한 고객을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성·상황별 추천·꽃말과 색상·기념일 캘린더·리본과 카드 문구·주문과 결제·배송·받은 꽃 관리·취소/환불·FAQ 50선·용어사전까지 12개 장(45개 아티클)으로 주문 여정 순서대로 정리합니다. GitBook 스타일의 SPA + 통합 검색(Cmd/Ctrl+K) + 릴리즈 노트 페이지를 제공합니다.
+온라인으로 꽃배달을 주문하려는 분, 특히 주문이 처음이라 막막한 고객을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성·상황별 추천·꽃말과 색상·기념일 캘린더·리본과 카드 문구·주문과 결제·배송·받은 꽃 관리·취소/환불·FAQ 50선·용어사전까지 12개 장(45개 아티클)으로 주문 여정 순서대로 정리합니다. GitBook 스타일의 SPA + 통합 검색(Cmd/Ctrl+K) + 릴리즈 노트 페이지 + **임베드형 상담 챗봇 위젯**(우하단 '상담하기')을 제공합니다.
 
 ## 3계층 동시 갱신
 
@@ -12,7 +12,7 @@
 
 | 계층 | 위치 | 역할 |
 |------|------|------|
-| **운영 소스** | `index.html`, `assets/css/main.css`, `assets/js/main.js` | 실제 동작하는 셸과 로직 |
+| **운영 소스** | `index.html`, `assets/css/main.css`, `assets/js/main.js`, `chatbot.html`, `assets/chatbot/*` | 실제 동작하는 셸과 로직 + 상담 챗봇 |
 | **데이터 매니페스트** | `system.json`, `analyses/{id}/chapter.json` | 시스템 메타데이터 + 챕터/아티클 콘텐츠 |
 | **문서** | `README.md`, `AGENTS.md`, 본 파일 | 기여자/에이전트 가이드 |
 
@@ -48,7 +48,13 @@
 
 ### 본문 블록
 지원 타입: `heading`, `text`, `note`, `kv`, `stats`, `structure`, `steprail`, `region-table`, `image`, `image-slot`.
-새 타입을 추가할 때는 `assets/js/main.js`의 `renderBlock()` 분기와 `assets/css/main.css`의 `.blk-*` 스타일을 같이 추가.
+새 타입을 추가할 때는 `assets/js/main.js`의 `renderBlock()` 분기와 `assets/css/main.css`의 `.blk-*` 스타일을 같이 추가. **그리고 챗봇이 그 블록을 답변에 쓰도록 `assets/chatbot/chatbot.js`의 `indexChapter()` 추출 분기에도 같이 추가**(없으면 챗봇 검색에서 누락).
+
+### 상담 챗봇 위젯 (`chatbot.html` · `assets/chatbot/`)
+- **별도 데이터 없음** — `chatbot.js`가 런타임에 `system.json` + 전 `chapter.json`을 읽어 Q&A 지식베이스를 만든다. 챕터 콘텐츠를 고치면 챗봇 답변도 자동 반영. (챗봇용 데이터를 따로 만들지 말 것)
+- **iframe 본체** `chatbot.html` + `chatbot.css`·`chatbot.js`는 부모 페이지에 의존하지 않게 자체 토큰을 쓰되 가이드와 같은 Pinterest 팔레트를 따른다. 답변·칩·사용자 입력은 모두 `escapeHtml()`.
+- **임베드** `assets/chatbot/embed.js` 한 줄로 어느 사이트에든 설치(자기 위치에서 chatbot.html 경로 자동 도출). 옵션은 `data-*`, 제어는 `window.FlowerChat`. 가이드 `index.html`에도 같은 스크립트가 들어 있다.
+- **답변 엔진** 백엔드·API 키 없이 브라우저에서 동작하는 한국어 검색(조사·동사어미 stemming + 불용어 + IDF + 글자 바이그램 + 가격 의도). 연락처는 전화 `1668-1840`·카카오톡·`dorangflower.com`. (`data-api`로 LLM 백엔드 연결 가능)
 
 ### 정확도(accuracy) 메타데이터 — 소스 전용, 프론트 비노출
 아티클(`articles[].accuracy`)과 본문 블록(`blocks[].accuracy`)은 선택적 `accuracy`(0~100 정수)를 가집니다. **데이터(소스)에만 저장하며 UI에는 절대 렌더링하지 않습니다.**

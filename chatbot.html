@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="noindex">
+<title>꽃배달 상담 도우미</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chatbot/chatbot.css?v=1.0.0">
+</head>
+<body>
+
+<div class="dfc" id="dfc">
+  <!-- ============ HEADER ============ -->
+  <header class="dfc-header">
+    <div class="dfc-head-top">
+      <div class="dfc-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 9a3 3 0 100 6 3 3 0 000-6z"/>
+          <path d="M12 9c0-2.5-1.2-5-3-5s-2.4 2.8-1 4.5M12 9c0-2.5 1.2-5 3-5s2.4 2.8 1 4.5M15 12c2.5 0 5-1.2 5-3s-2.8-2.4-4.5-1M9 12c-2.5 0-5-1.2-5-3s2.8-2.4 4.5-1M12 15c0 2.5 1.2 5 3 5s2.4-2.8 1-4.5M12 15c0 2.5-1.2 5-3 5s-2.4-2.8-1-4.5"/>
+        </svg>
+      </div>
+      <div class="dfc-id">
+        <div class="dfc-name"><span class="dfc-dot" aria-hidden="true"></span><span id="dfc-title">꽃배달 상담 도우미</span></div>
+        <div class="dfc-sub" id="dfc-subtitle">도랑플라워 · 전국 당일배송 안내</div>
+      </div>
+      <button class="dfc-close" id="dfc-close" type="button" aria-label="상담창 닫기" title="닫기">&times;</button>
+    </div>
+
+    <div class="dfc-badges">
+      <span class="dfc-badge dfc-badge--brand">전국 당일배송</span>
+      <span class="dfc-badge">근조·축하화환</span>
+      <span class="dfc-badge">꽃다발·화분</span>
+      <span class="dfc-badge">완료 사진 전송</span>
+    </div>
+
+    <div class="dfc-cta">
+      <a class="dfc-cta--call" id="dfc-call" href="tel:1668-1840">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg>
+        전화 상담
+      </a>
+      <a class="dfc-cta--kakao" id="dfc-kakao" href="https://pf.kakao.com/_xmcrwn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.6-1.8 3.6-2.5.7.1 1.4.2 2.1.2 5.5 0 10-3.5 10-7.7S17.5 3 12 3z"/></svg>
+        카카오톡
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ MESSAGE LOG ============ -->
+  <main class="dfc-log" id="dfc-log" aria-live="polite" aria-label="상담 대화"></main>
+
+  <!-- ============ QUICK REPLIES ============ -->
+  <div class="dfc-chips" id="dfc-chips"></div>
+
+  <!-- ============ COMPOSER ============ -->
+  <footer class="dfc-composer">
+    <form class="dfc-input-row" id="dfc-form">
+      <textarea class="dfc-input" id="dfc-input" rows="1" placeholder="메시지를 입력하세요…" autocomplete="off"></textarea>
+      <button class="dfc-send" id="dfc-send" type="submit" aria-label="보내기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+    <div class="dfc-foot">AI 도우미는 실수할 수 있어요. 정확한 내용은 전화(1668-1840)로 확인하세요.</div>
+  </footer>
+</div>
+
+<script src="assets/chatbot/chatbot.js?v=1.0.0"></script>
+</body>
+</html>

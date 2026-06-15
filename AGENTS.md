@@ -105,8 +105,17 @@ flower_dictionary/
 │
 ├── index.html                  ← 운영 진본 (브라우저용 사이트)
 ├── assets/css/main.css
-└── assets/js/main.js
+├── assets/js/main.js
+│
+├── chatbot.html                ← 상담 챗봇 iframe UI 본체
+├── chatbot-demo.html           ← 설치 데모/사용법
+└── assets/chatbot/
+    ├── embed.js                ← 한 줄 임베드 설치 스크립트
+    ├── chatbot.css
+    └── chatbot.js              ← KB 구축 + 한국어 검색 답변 엔진
 ```
+
+> **상담 챗봇**: `chatbot.js`가 런타임에 `system.json` + 전 `chapter.json`을 읽어 Q&A 지식베이스를 만듭니다. **별도 챗봇 데이터를 만들지 마세요** — 챕터 콘텐츠를 고치면 챗봇 답변도 자동 반영됩니다. 새 본문 블록 타입을 추가하면 `chatbot.js`의 `indexChapter()` 추출 분기에도 같이 더하세요(없으면 그 블록은 검색에서 누락).
 
 ---
 

@@ -1,7 +1,7 @@
 # 꽃배달 이용 가이드 · Flower Delivery Usage Guide
 
 > 꽃 주문이 처음인 분을 위한 실전 이용 가이드.
-> **현재 버전 v4.0.0**
+> **현재 버전 v4.1.0**
 
 ---
 
@@ -31,7 +31,7 @@ open index.html          # macOS
 
 ---
 
-## 12개 장 구성 (v4.0.0)
+## 12개 장 구성 (v4.1.0)
 
 '무엇을 보낼지 → 어떻게 주문하고 받을지 → 받은 뒤'까지 주문 여정 순서 그대로 설계했습니다. 총 **45개 아티클**.
 
@@ -63,6 +63,24 @@ open index.html          # macOS
 - **큰글씨 모드** — `큰글씨` 토글로 폰트·여백·둥글기 일괄 1.2배 확대. (처음 주문하는 분, 어르신께 특히 유용)
 - **모바일 반응형** — 360px viewport에서 가로 스크롤 0건 검증.
 - **선호 영속화** — 테마·큰글씨 설정은 `localStorage` 에 저장됨.
+- **상담 챗봇 위젯** — 우하단 `상담하기` 버튼 → 우측 슬라이드 패널(iframe 챗봇). 가이드 내용으로 답하며, **한 줄 스크립트**로 어느 사이트에든 설치 가능. (아래 "상담 챗봇 임베드" 참고)
+
+---
+
+## 상담 챗봇 임베드
+
+가이드의 FAQ·전 챕터 내용을 그대로 답변에 쓰는 상담 챗봇입니다. **어느 웹사이트든 아래 한 줄**만 넣으면 우하단 `상담하기` 버튼과 우측 슬라이드 패널이 설치됩니다.
+
+```html
+<script src="https://dohoon0505.github.io/flower_dictionary/assets/chatbot/embed.js" defer></script>
+```
+
+- iframe 챗봇 UI(`chatbot.html`)와 데이터 경로는 스크립트가 **자기 위치에서 자동으로** 찾으므로, 타 도메인에 붙여도 동작합니다.
+- 답변 엔진은 **백엔드·API 키 없이 브라우저에서** 동작하는 한국어 검색입니다. 가이드(`chapter.json`)를 고치면 챗봇 답변도 함께 최신화됩니다.
+- 옵션: `data-title` · `data-label` · `data-accent` · `data-position`(left/right) · `data-open` · `data-api`(LLM 백엔드 연결). 제어: `window.FlowerChat.open() / .close() / .toggle()`.
+- 설치 미리보기·전체 사용법: **`chatbot-demo.html`** 를 브라우저로 열기. (로컬은 서버로 띄워야 fetch 동작)
+
+> 가이드 자체(`index.html`)에도 같은 위젯이 설치되어 있습니다.
 
 ---
 
@@ -79,7 +97,13 @@ flower_dictionary/
 ├── index.html                  ← 운영 진본 (단일 진입점)
 ├── assets/
 │   ├── css/main.css
-│   └── js/main.js
+│   ├── js/main.js
+│   └── chatbot/                ← 임베드형 상담 챗봇
+│       ├── embed.js            ← 한 줄 설치 스크립트 (FAB + 슬라이드 패널)
+│       ├── chatbot.css
+│       └── chatbot.js          ← KB 구축 + 한국어 검색 답변 엔진
+├── chatbot.html                ← 챗봇 iframe UI 본체
+├── chatbot-demo.html           ← 설치 데모/사용법
 │
 ├── system.json                 ← 루트 매니페스트 (chapters + releases)
 ├── analyses/                   ← 장(챕터) 콘텐츠 데이터

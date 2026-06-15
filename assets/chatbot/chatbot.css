@@ -1,0 +1,382 @@
+/* ================================================================
+   꽃배달 상담 챗봇 — iframe UI 스타일
+   v1.0.0 · 아트 디렉션: Pinterest (크림 크롬 · 스카스 레드 · 16/32/pill · 플랫)
+   ----------------------------------------------------------------
+   이 파일은 iframe 안에서 단독으로 동작합니다. 부모 페이지 CSS에
+   의존하지 않도록 토큰을 자체 정의합니다(가이드 main.css와 동일 팔레트).
+   ================================================================ */
+
+/* ============ TOKENS ============ */
+:root {
+  --p-neutral-0:  #ffffff;
+  --p-neutral-10: #fbfbf9;
+  --p-neutral-20: #f6f6f3;
+  --p-neutral-30: #e5e5e0;
+  --p-neutral-40: #dadad3;
+  --p-neutral-50: #c8c8c1;
+  --p-neutral-60: #91918c;
+  --p-neutral-70: #62625b;
+  --p-neutral-80: #33332e;
+  --p-neutral-85: #262622;
+  --p-neutral-95: #1a1916;
+
+  --p-red-500: #e60023;
+  --p-red-600: #cc001f;
+  --p-red-50:  #fde7ea;
+
+  --c-bg:        var(--p-neutral-10);
+  --c-surface:   var(--p-neutral-0);
+  --c-surface-2: var(--p-neutral-20);
+  --c-border:    var(--p-neutral-30);
+  --c-border-2:  var(--p-neutral-40);
+  --c-text:      var(--p-neutral-85);
+  --c-text-2:    var(--p-neutral-70);
+  --c-text-3:    var(--p-neutral-60);
+  --c-brand:     var(--p-red-500);
+  --c-brand-h:   var(--p-red-600);
+
+  --font: "Inter", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --badge-font: 700 12px/1 var(--font);
+
+  --radius-md: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion: 220ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg:        var(--p-neutral-95);
+    --c-surface:   var(--p-neutral-85);
+    --c-surface-2: #211f1c;
+    --c-border:    #33332e;
+    --c-border-2:  #3f3f39;
+    --c-text:      #f3f3ee;
+    --c-text-2:    #c2c2bb;
+    --c-text-3:    var(--p-neutral-60);
+    --p-red-50:    rgba(230, 0, 35, 0.16);  /* 아바타·hover 틴트(다크 대응) */
+  }
+  .dfc-badge--brand { background: var(--c-brand); color: #fff; }   /* 다크: 솔리드 브랜드 뱃지 */
+  .dfc-ref:hover { background: rgba(230, 0, 35, 0.18); color: #ff8a98; }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--c-bg);
+  font-family: var(--font);
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ============ SHELL ============ */
+.dfc {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--c-bg);
+}
+
+/* ============ HEADER ============ */
+.dfc-header {
+  flex: 0 0 auto;
+  padding: 16px 16px 14px;
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+}
+.dfc-head-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dfc-avatar {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--p-red-50);
+  display: grid;
+  place-items: center;
+  color: var(--c-brand);
+}
+.dfc-avatar svg { width: 26px; height: 26px; }
+.dfc-id { flex: 1 1 auto; min-width: 0; }
+.dfc-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+.dfc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: #2bb673;
+  box-shadow: 0 0 0 3px rgba(43,182,115,0.18);
+}
+.dfc-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--c-text-3);
+}
+.dfc-close {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-full);
+  color: var(--c-text-3);
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background var(--motion), color var(--motion);
+}
+.dfc-close:hover { background: var(--c-surface-2); color: var(--c-text); }
+
+.dfc-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.dfc-badge {
+  font: var(--badge-font);
+  padding: 5px 9px;
+  border-radius: var(--radius-full);
+  background: var(--c-surface-2);
+  color: var(--c-text-2);
+  border: 1px solid var(--c-border);
+}
+.dfc-badge--brand { background: var(--p-red-50); color: var(--c-brand-h); border-color: transparent; }
+
+.dfc-cta {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.dfc-cta a {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 10px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 120ms var(--ease-out), background var(--motion);
+}
+.dfc-cta a:active { transform: scale(0.97); }
+.dfc-cta--call { background: var(--c-brand); color: #fff; }
+.dfc-cta--call:hover { background: var(--c-brand-h); }
+.dfc-cta--kakao { background: #fae100; color: #3c1e1e; }
+.dfc-cta--kakao:hover { filter: brightness(0.96); }
+.dfc-cta svg { width: 16px; height: 16px; }
+
+/* ============ MESSAGES ============ */
+.dfc-log {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+.dfc-log::-webkit-scrollbar { width: 8px; }
+.dfc-log::-webkit-scrollbar-thumb { background: var(--c-border-2); border-radius: 8px; }
+
+.dfc-row { display: flex; max-width: 100%; }
+.dfc-row--bot { justify-content: flex-start; }
+.dfc-row--user { justify-content: flex-end; }
+
+.dfc-bubble {
+  max-width: 84%;
+  padding: 11px 14px;
+  font-size: 14.5px;
+  line-height: 1.62;
+  word-break: break-word;
+  animation: dfc-pop var(--motion) var(--ease-out) both;
+}
+.dfc-row--bot .dfc-bubble {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  color: var(--c-text);
+  border-radius: 4px var(--radius-xl) var(--radius-xl) var(--radius-xl);
+}
+.dfc-row--user .dfc-bubble {
+  background: var(--c-brand);
+  color: #fff;
+  border-radius: var(--radius-xl) var(--radius-xl) 4px var(--radius-xl);
+}
+.dfc-bubble strong { font-weight: 700; }
+.dfc-bubble .dfc-topic {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.dfc-bubble a { color: inherit; }
+
+.dfc-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  color: var(--c-text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--motion), color var(--motion), border-color var(--motion);
+}
+.dfc-ref:hover { background: var(--p-red-50); color: var(--c-brand-h); border-color: transparent; }
+
+/* contact card inside a bubble */
+.dfc-contact { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.dfc-contact a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-border);
+  background: var(--c-surface-2);
+  color: var(--c-text);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: border-color var(--motion), background var(--motion);
+}
+.dfc-contact a:hover { border-color: var(--c-brand); }
+.dfc-contact a span:first-child {
+  font: var(--badge-font);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--c-brand);
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+/* typing indicator */
+.dfc-typing { display: inline-flex; gap: 4px; padding: 4px 2px; }
+.dfc-typing i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--c-text-3);
+  animation: dfc-blink 1.2s infinite both;
+}
+.dfc-typing i:nth-child(2) { animation-delay: 0.2s; }
+.dfc-typing i:nth-child(3) { animation-delay: 0.4s; }
+
+/* ============ QUICK REPLIES ============ */
+.dfc-chips {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 4px 16px 12px;
+  justify-content: flex-end;
+}
+.dfc-chips:empty { display: none; }
+.dfc-chip {
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--c-brand);
+  background: var(--c-surface);
+  color: var(--c-brand);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background var(--motion), color var(--motion), transform 120ms var(--ease-out);
+  animation: dfc-pop var(--motion) var(--ease-out) both;
+}
+.dfc-chip:hover { background: var(--c-brand); color: #fff; }
+.dfc-chip:active { transform: scale(0.96); }
+
+/* ============ COMPOSER ============ */
+.dfc-composer {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  border-top: 1px solid var(--c-border);
+  background: var(--c-surface);
+}
+.dfc-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border-2);
+  border-radius: var(--radius-xl);
+  padding: 6px 6px 6px 16px;
+  transition: border-color var(--motion);
+}
+.dfc-input-row:focus-within { border-color: var(--c-brand); }
+.dfc-input {
+  flex: 1 1 auto;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  max-height: 96px;
+  padding: 7px 0;
+}
+.dfc-input::placeholder { color: var(--c-text-3); }
+.dfc-send {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--c-brand);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: background var(--motion), transform 120ms var(--ease-out), opacity var(--motion);
+}
+.dfc-send:hover { background: var(--c-brand-h); }
+.dfc-send:active { transform: scale(0.92); }
+.dfc-send:disabled { opacity: 0.4; cursor: default; }
+.dfc-send svg { width: 18px; height: 18px; }
+
+.dfc-foot {
+  margin: 9px 2px 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--c-text-3);
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes dfc-pop {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes dfc-blink {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dfc-bubble, .dfc-chip { animation: none; }
+  .dfc-log { scroll-behavior: auto; }
+  .dfc-typing i { animation: none; opacity: 0.5; }
+}
