@@ -46,21 +46,7 @@
   --motion: 220ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --c-bg:        var(--p-neutral-95);
-    --c-surface:   var(--p-neutral-85);
-    --c-surface-2: #211f1c;
-    --c-border:    #33332e;
-    --c-border-2:  #3f3f39;
-    --c-text:      #f3f3ee;
-    --c-text-2:    #c2c2bb;
-    --c-text-3:    var(--p-neutral-60);
-    --p-red-50:    rgba(230, 0, 35, 0.16);  /* 아바타·hover 틴트(다크 대응) */
-  }
-  .dfc-badge--brand { background: var(--c-brand); color: #fff; }   /* 다크: 솔리드 브랜드 뱃지 */
-  .dfc-ref:hover { background: rgba(230, 0, 35, 0.18); color: #ff8a98; }
-}
+/* 라이트(화이트) 모드 고정 — 시스템 다크 설정과 무관하게 항상 밝게 */
 
 * { box-sizing: border-box; }
 
@@ -70,6 +56,7 @@ html, body {
   background: var(--c-bg);
   font-family: var(--font);
   color: var(--c-text);
+  color-scheme: light;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

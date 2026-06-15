@@ -58,7 +58,9 @@
   }
 
   /* ---- 스타일 주입(부모 페이지와 충돌 없도록 모두 dfcw- 접두) ---- */
-  var side = CFG.position;
+  var side = CFG.position;                                  // 'right' | 'left'
+  var slideOut = side === 'left' ? 'translateX(-100%)' : 'translateX(100%)';   // 닫힘 위치
+  var shadow = side === 'left' ? '8px 0 40px rgba(0,0,0,.16)' : '-8px 0 40px rgba(0,0,0,.16)';
   var css = [
     '.dfcw-fab{position:fixed;' + side + ':24px;bottom:24px;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;',
     'height:54px;padding:0 22px 0 18px;border:0;border-radius:9999px;cursor:pointer;',
@@ -69,20 +71,21 @@
     '.dfcw-fab svg{width:22px;height:22px;}',
     '.dfcw-fab.dfcw-hide{opacity:0;transform:scale(.6);pointer-events:none;}',
 
-    '.dfcw-panel{position:fixed;' + side + ':24px;bottom:24px;z-index:2147483001;',
-    'width:400px;height:680px;max-height:calc(100vh - 48px);max-width:calc(100vw - 48px);',
-    'background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.28);',
-    'opacity:0;transform:translateY(24px) scale(.98);transform-origin:' + side + ' bottom;pointer-events:none;',
-    'transition:opacity .26s cubic-bezier(.23,1,.32,1),transform .26s cubic-bezier(.23,1,.32,1);}',
-    '.dfcw-panel.dfcw-open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}',
+    // 화면 우측(또는 좌측)에 꽉 차는 풀하이트 패널 — 가장자리에서 슬라이드 인
+    '.dfcw-panel{position:fixed;top:0;bottom:0;' + side + ':0;z-index:2147483001;',
+    'width:420px;max-width:100vw;height:100vh;height:100dvh;',
+    'background:#fff;overflow:hidden;box-shadow:' + shadow + ';',
+    'transform:' + slideOut + ';pointer-events:none;',
+    'transition:transform .34s cubic-bezier(.22,1,.32,1);}',
+    '.dfcw-panel.dfcw-open{transform:translateX(0);pointer-events:auto;}',
     '.dfcw-panel iframe{width:100%;height:100%;border:0;display:block;background:#fbfbf9;}',
 
     '@media (max-width:520px){',
-    '.dfcw-panel{' + side + ':0;bottom:0;width:100vw;height:100vh;max-height:100vh;max-width:100vw;border-radius:0;}',
+    '.dfcw-panel{width:100vw;}',
     '.dfcw-fab{' + side + ':16px;bottom:16px;}',
     '}',
     '@media (prefers-reduced-motion:reduce){',
-    '.dfcw-fab,.dfcw-panel{transition:opacity .15s linear;}',
+    '.dfcw-panel{transition:transform .15s linear;}',
     '}'
   ].join('');
   var styleEl = document.createElement('style');
