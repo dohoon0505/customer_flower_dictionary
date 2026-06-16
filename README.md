@@ -79,6 +79,7 @@ open index.html          # macOS
 - 답변 엔진은 **백엔드·API 키 없이 브라우저에서** 동작하는 한국어 검색입니다. 가이드(`chapter.json`)를 고치면 챗봇 답변도 함께 최신화됩니다.
 - 옵션: `data-title` · `data-label` · `data-accent` · `data-position`(left/right) · `data-open` · `data-api`(LLM 백엔드 연결). 제어: `window.FlowerChat.open() / .close() / .toggle()`.
 - 설치 미리보기·전체 사용법: **`chatbot-demo.html`** 를 브라우저로 열기. (로컬은 서버로 띄워야 fetch 동작)
+- 옵션·제어·커스터마이즈·트러블슈팅을 포함한 상세 도입 절차: **[chatbot 도입 가이드.md](chatbot%20도입%20가이드.md)**
 
 > 가이드 자체(`index.html`)에도 같은 위젯이 설치되어 있습니다.
 
