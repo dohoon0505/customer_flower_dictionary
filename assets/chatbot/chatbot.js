@@ -407,6 +407,7 @@
 
   /* ============ SEND FLOW ============ */
   var busy = false;
+  var apiHistory = [];   // AI 백엔드(data-api)용 대화 맥락 [{role, text}]
   function submit(text) {
     text = (text || '').trim();
     if (!text || busy) return;
@@ -421,6 +422,12 @@
       hideTyping();
       addBot(ans.html);
       renderChips(ans.chips || []);
+      // 대화 맥락 적재(이번 user 질문 + bot 답변의 평문)
+      var bots = logEl.querySelectorAll('.dfc-row--bot .dfc-bubble');
+      var botText = bots.length ? bots[bots.length - 1].textContent : '';
+      apiHistory.push({ role: 'user', text: text });
+      apiHistory.push({ role: 'assistant', text: botText });
+      if (apiHistory.length > 12) apiHistory = apiHistory.slice(-12);
       busy = false;
       inputEl.focus();
     };
@@ -440,12 +447,12 @@
     }
   }
 
-  // (선택) 원격 LLM 호출
+  // (선택) AI 백엔드 호출 — 가이드 기반으로 Claude가 생성한 답변
   function remoteAnswer(text) {
     return fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text })
+      body: JSON.stringify({ message: text, history: apiHistory.slice(-8) })
     }).then(function (r) { return r.json(); }).then(function (data) {
       var html = escapeHtml(data.reply || data.answer || '');
       (data.refs || []).forEach(function (ref) {

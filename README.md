@@ -77,7 +77,8 @@ open index.html          # macOS
 
 - iframe 챗봇 UI(`chatbot.html`)와 데이터 경로는 스크립트가 **자기 위치에서 자동으로** 찾으므로, 타 도메인에 붙여도 동작합니다.
 - 답변 엔진은 **백엔드·API 키 없이 브라우저에서** 동작하는 한국어 검색입니다. 가이드(`chapter.json`)를 고치면 챗봇 답변도 함께 최신화됩니다.
-- 옵션: `data-title` · `data-label` · `data-accent` · `data-position`(left/right) · `data-open` · `data-api`(LLM 백엔드 연결). 제어: `window.FlowerChat.open() / .close() / .toggle()`.
+- 옵션: `data-title` · `data-label` · `data-accent` · `data-position`(left/right) · `data-open` · `data-api`(AI 백엔드 연결). 제어: `window.FlowerChat.open() / .close() / .toggle()`.
+- **진짜 AI로 답하기(선택)**: `chatbot-backend/`를 배포하고(키는 백엔드에만) `data-api`로 연결하면, 가이드를 컨텍스트로 주입한 **Claude가 직접 생성한 답변**을 사용합니다(RAG). 지식은 `node scripts/build-chatbot-knowledge.mjs`로 빌드. 자세히는 [chatbot-backend/README.md](chatbot-backend/README.md).
 - 설치 미리보기·전체 사용법: **`chatbot-demo.html`** 를 브라우저로 열기. (로컬은 서버로 띄워야 fetch 동작)
 - 옵션·제어·커스터마이즈·트러블슈팅을 포함한 상세 도입 절차: **[chatbot 도입 가이드.md](chatbot%20도입%20가이드.md)**
 
@@ -102,9 +103,11 @@ flower_dictionary/
 │   └── chatbot/                ← 임베드형 상담 챗봇
 │       ├── embed.js            ← 한 줄 설치 스크립트 (FAB + 슬라이드 패널)
 │       ├── chatbot.css
-│       └── chatbot.js          ← KB 구축 + 한국어 검색 답변 엔진
+│       ├── chatbot.js          ← KB 구축 + 한국어 검색 답변 엔진 (기본)
+│       └── knowledge.md        ← AI 백엔드용 가이드 컴파일본 (빌드 산출물)
 ├── chatbot.html                ← 챗봇 iframe UI 본체
 ├── chatbot-demo.html           ← 설치 데모/사용법
+├── chatbot-backend/            ← (선택) AI 백엔드 — Claude RAG, 플랫폼 비종속
 │
 ├── system.json                 ← 루트 매니페스트 (chapters + releases)
 ├── analyses/                   ← 장(챕터) 콘텐츠 데이터

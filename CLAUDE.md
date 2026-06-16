@@ -48,13 +48,14 @@
 
 ### 본문 블록
 지원 타입: `heading`, `text`, `note`, `kv`, `stats`, `structure`, `steprail`, `region-table`, `image`, `image-slot`.
-새 타입을 추가할 때는 `assets/js/main.js`의 `renderBlock()` 분기와 `assets/css/main.css`의 `.blk-*` 스타일을 같이 추가. **그리고 챗봇이 그 블록을 답변에 쓰도록 `assets/chatbot/chatbot.js`의 `indexChapter()` 추출 분기에도 같이 추가**(없으면 챗봇 검색에서 누락).
+새 타입을 추가할 때는 `assets/js/main.js`의 `renderBlock()` 분기와 `assets/css/main.css`의 `.blk-*` 스타일을 같이 추가. **그리고 챗봇이 그 블록을 답변에 쓰도록 ① `assets/chatbot/chatbot.js`의 `indexChapter()`(검색용) ② `scripts/build-chatbot-knowledge.mjs`의 `blockToMd()`(AI 백엔드용 knowledge.md) 두 곳의 추출 분기에도 같이 추가**(없으면 챗봇 답변에서 누락).
 
 ### 상담 챗봇 위젯 (`chatbot.html` · `assets/chatbot/`)
 - **별도 데이터 없음** — `chatbot.js`가 런타임에 `system.json` + 전 `chapter.json`을 읽어 Q&A 지식베이스를 만든다. 챕터 콘텐츠를 고치면 챗봇 답변도 자동 반영. (챗봇용 데이터를 따로 만들지 말 것)
 - **iframe 본체** `chatbot.html` + `chatbot.css`·`chatbot.js`는 부모 페이지에 의존하지 않게 자체 토큰을 쓰되 가이드와 같은 Pinterest 팔레트를 따른다. 답변·칩·사용자 입력은 모두 `escapeHtml()`.
 - **임베드** `assets/chatbot/embed.js` 한 줄로 어느 사이트에든 설치(자기 위치에서 chatbot.html 경로 자동 도출). 옵션은 `data-*`, 제어는 `window.FlowerChat`. 가이드 `index.html`에도 같은 스크립트가 들어 있다.
-- **답변 엔진** 백엔드·API 키 없이 브라우저에서 동작하는 한국어 검색(조사·동사어미 stemming + 불용어 + IDF + 글자 바이그램 + 가격 의도). 연락처는 전화 `1668-1840`·카카오톡·`dorangflower.com`. (`data-api`로 LLM 백엔드 연결 가능)
+- **답변 엔진** 기본은 백엔드·API 키 없이 브라우저에서 동작하는 한국어 검색(조사·동사어미 stemming + 불용어 + IDF + 글자 바이그램 + 가격 의도). 연락처는 전화 `1668-1840`·카카오톡·`dorangflower.com`.
+- **(선택) AI 백엔드** `chatbot-backend/`(Claude RAG, 플랫폼 비종속) 배포 후 위젯 `data-api`로 연결하면, 가이드를 컨텍스트로 주입한 Claude가 답을 생성한다. 근거 데이터는 `scripts/build-chatbot-knowledge.mjs`가 만드는 `assets/chatbot/knowledge.md`(소스 전용 accuracy 제외, route 포함). 키는 백엔드에만 두고 프런트 노출 금지.
 
 ### 정확도(accuracy) 메타데이터 — 소스 전용, 프론트 비노출
 아티클(`articles[].accuracy`)과 본문 블록(`blocks[].accuracy`)은 선택적 `accuracy`(0~100 정수)를 가집니다. **데이터(소스)에만 저장하며 UI에는 절대 렌더링하지 않습니다.**

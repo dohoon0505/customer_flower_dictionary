@@ -2,7 +2,7 @@
   "name": "flower-usage-guide",
   "fullName": "꽃배달 이용 가이드",
   "shortName": "꽃가이드",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성, 상황별 추천, 꽃말·기념일, 리본 문구, 주문·결제, 배송, 관리법, 취소·환불, FAQ 50선, 용어사전까지 주문 여정 순서로 정리했습니다.",
   "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
   "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
@@ -122,6 +122,19 @@
     }
   ],
   "releases": [
+    {
+      "version": "4.2.0",
+      "date": "2026-06-16",
+      "title": "상담 챗봇 — 가이드 기반 AI(Claude) 답변 백엔드 추가",
+      "tag": "MINOR",
+      "highlight": "상담 챗봇이 내장 검색을 넘어, 가이드 전체를 학습(컨텍스트로 주입)한 Claude가 질문에 맞춰 직접 답을 생성하도록 선택형 AI 백엔드를 추가했습니다. 방식은 파인튜닝이 아니라 RAG·컨텍스트 그라운딩 — 가이드를 `assets/chatbot/knowledge.md`로 컴파일해 Claude 시스템 컨텍스트로 주고(프롬프트 캐싱으로 비용 절감, 구조화 출력으로 답변·출처·추천질문을 한 번에) 답을 만듭니다. 그래서 챕터를 고치면 AI 답변도 즉시 최신화되고, 모델 재학습이 필요 없습니다. 백엔드(`chatbot-backend/`)는 의존성 없이 표준 fetch만 써 Cloudflare Workers·Vercel·Node 어디에나 올릴 수 있고, API 키는 백엔드에만 둡니다. 위젯은 `data-api` 한 줄로 연결되며 직전 대화 맥락(history)도 함께 전달해 멀티턴 상담이 됩니다. 연결 실패 시 자동으로 내장 검색으로 폴백합니다.",
+      "changes": [
+        { "type": "added", "value": "AI 백엔드 `chatbot-backend/` — core.mjs(가이드 컨텍스트 + 프롬프트 캐싱 + 구조화 출력으로 Claude 호출), worker.mjs(Cloudflare/Vercel Edge), node-server.mjs(Node 단독), wrangler.toml·.env.example·README. 기본 모델 claude-opus-4-8, 환경변수로 claude-haiku-4-5 교체 가능" },
+        { "type": "added", "value": "지식 컴파일러 `scripts/build-chatbot-knowledge.mjs` — system.json + 전 chapter.json을 `assets/chatbot/knowledge.md`로 변환(아티클 route 포함, 소스 전용 accuracy 제외). 45개 아티클·약 47K 토큰" },
+        { "type": "changed", "value": "위젯 `chatbot.js` — `data-api` 연결 시 직전 대화 맥락(history)을 함께 전송해 멀티턴 지원, AI 응답의 reply·refs·chips 렌더(실패 시 내장 검색 폴백)" },
+        { "type": "added", "value": "문서 — 챗봇 도입 가이드 §8(진짜 AI로 답하기)·README·AGENTS·CLAUDE에 AI 백엔드 연결·지식 빌드·블록 추가 시 knowledge 동기화 규칙 반영" }
+      ]
+    },
     {
       "version": "4.1.0",
       "date": "2026-06-15",
@@ -404,6 +417,6 @@
   "counts": {
     "chapters": 12,
     "articles": 45,
-    "releases": 22
+    "releases": 23
   }
 }
