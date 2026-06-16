@@ -55,7 +55,7 @@
 - **iframe 본체** `chatbot.html` + `chatbot.css`·`chatbot.js`는 부모 페이지에 의존하지 않게 자체 토큰을 쓰되 가이드와 같은 Pinterest 팔레트를 따른다. 답변·칩·사용자 입력은 모두 `escapeHtml()`.
 - **임베드** `assets/chatbot/embed.js` 한 줄로 어느 사이트에든 설치(자기 위치에서 chatbot.html 경로 자동 도출). 옵션은 `data-*`, 제어는 `window.FlowerChat`. 가이드 `index.html`에도 같은 스크립트가 들어 있다.
 - **답변 엔진** 기본은 백엔드·API 키 없이 브라우저에서 동작하는 한국어 검색(조사·동사어미 stemming + 불용어 + IDF + 글자 바이그램 + 가격 의도). 연락처는 전화 `1668-1840`·카카오톡·`dorangflower.com`.
-- **(선택) AI 백엔드** `chatbot-backend/`(Claude RAG, 플랫폼 비종속) 배포 후 위젯 `data-api`로 연결하면, 가이드를 컨텍스트로 주입한 Claude가 답을 생성한다. 근거 데이터는 `scripts/build-chatbot-knowledge.mjs`가 만드는 `assets/chatbot/knowledge.md`(소스 전용 accuracy 제외, route 포함). 키는 백엔드에만 두고 프런트 노출 금지.
+- **(선택) AI 백엔드** `chatbot-backend/`(OpenAI GPT RAG, 플랫폼 비종속) 배포 후 위젯 `data-api`로 연결하면, 가이드를 컨텍스트로 주입한 GPT가 답을 생성한다(Responses API + 구조화 출력). 근거 데이터는 `scripts/build-chatbot-knowledge.mjs`가 만드는 `assets/chatbot/knowledge.md`(소스 전용 accuracy 제외, route 포함). 키는 백엔드에만 두고 프런트 노출 금지.
 
 ### 정확도(accuracy) 메타데이터 — 소스 전용, 프론트 비노출
 아티클(`articles[].accuracy`)과 본문 블록(`blocks[].accuracy`)은 선택적 `accuracy`(0~100 정수)를 가집니다. **데이터(소스)에만 저장하며 UI에는 절대 렌더링하지 않습니다.**

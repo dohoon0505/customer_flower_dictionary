@@ -2,7 +2,7 @@
   "name": "flower-usage-guide",
   "fullName": "꽃배달 이용 가이드",
   "shortName": "꽃가이드",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "꽃 주문이 처음인 분을 위한 실전 이용 가이드. 전국꽃배달이 움직이는 방식부터 상품별 특성, 상황별 추천, 꽃말·기념일, 리본 문구, 주문·결제, 배송, 관리법, 취소·환불, FAQ 50선, 용어사전까지 주문 여정 순서로 정리했습니다.",
   "tagline": "꽃 주문, 뭘 골라야 할지 막막할 때 펴 보는 안내서.",
   "audience": "온라인으로 꽃배달을 주문하려는데 무엇을 어떻게 골라야 할지 막막한 분",
@@ -122,6 +122,17 @@
     }
   ],
   "releases": [
+    {
+      "version": "4.2.1",
+      "date": "2026-06-16",
+      "title": "AI 백엔드 — OpenAI GPT(Responses API)로 전환",
+      "tag": "PATCH",
+      "highlight": "상담 챗봇 AI 백엔드의 모델 제공자를 Claude에서 OpenAI GPT로 교체했습니다. 위젯과의 계약(요청 {message, history} → 응답 {reply, refs, chips})·RAG 방식(가이드 knowledge.md를 컨텍스트로 주입)·플랫폼 비종속 구조는 그대로 두고, 모델 호출부만 OpenAI Responses API로 바꿨습니다. 가이드 전체를 instructions로 주입하고 구조화 출력(text.format = json_schema, strict)으로 답변·출처·추천질문을 한 번에 받습니다. 기본 모델은 gpt-5.4-nano이며 OPENAI_MODEL 환경변수로 교체할 수 있습니다. 프런트(위젯)는 변경 없이 그대로 동작합니다.",
+      "changes": [
+        { "type": "changed", "value": "chatbot-backend/core.mjs — Anthropic Messages API → OpenAI Responses API(`POST /v1/responses`). instructions에 가이드 주입, text.format json_schema(strict)로 구조화 출력, reasoning.effort low. 환경변수 ANTHROPIC_* → OPENAI_API_KEY·OPENAI_MODEL(기본 gpt-5.4-nano)" },
+        { "type": "changed", "value": "백엔드 설정·문서 — wrangler.toml·.env.example·chatbot-backend/README를 OpenAI 키/모델 기준으로 갱신, 도입 가이드 §8·README·AGENTS·CLAUDE의 제공자 표기를 OpenAI GPT로 정정" }
+      ]
+    },
     {
       "version": "4.2.0",
       "date": "2026-06-16",
@@ -417,6 +428,6 @@
   "counts": {
     "chapters": 12,
     "articles": 45,
-    "releases": 23
+    "releases": 24
   }
 }

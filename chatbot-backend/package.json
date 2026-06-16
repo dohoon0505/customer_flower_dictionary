@@ -1,7 +1,7 @@
 {
   "name": "flower-chat-backend",
-  "version": "1.0.0",
-  "description": "꽃배달 상담 챗봇 AI 백엔드 — 가이드 기반 RAG로 Claude가 답변 생성 (의존성 없음, 플랫폼 비종속)",
+  "version": "1.1.0",
+  "description": "꽃배달 상담 챗봇 AI 백엔드 — 가이드 기반 RAG로 OpenAI GPT가 답변 생성 (의존성 없음, 플랫폼 비종속)",
   "type": "module",
   "private": true,
   "main": "node-server.mjs",

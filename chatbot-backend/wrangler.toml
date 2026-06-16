@@ -1,6 +1,6 @@
 # Cloudflare Workers 배포 설정
 # 1) npm i -g wrangler  (또는 npx 사용)
-# 2) npx wrangler secret put ANTHROPIC_API_KEY   ← 비밀 키는 여기에(코드/이 파일에 적지 말 것)
+# 2) npx wrangler secret put OPENAI_API_KEY   ← 비밀 키는 여기에(코드/이 파일에 적지 말 것)
 # 3) npx wrangler deploy
 #
 # 배포 후 받은 https://flower-chat-backend.<계정>.workers.dev 주소를
@@ -11,9 +11,8 @@ main = "worker.mjs"
 compatibility_date = "2024-11-01"
 
 [vars]
-# 모델: 기본 claude-opus-4-8. 대량/저비용이 필요하면 아래 주석을 해제해 Haiku로 교체.
-ANTHROPIC_MODEL = "claude-opus-4-8"
-# ANTHROPIC_MODEL = "claude-haiku-4-5"
+# 모델: 기본 gpt-5.4-nano. 정확한 모델 ID가 다르면 이 값만 바꾸세요.
+OPENAI_MODEL = "gpt-5.4-nano"
 
 # 배포한 가이드의 knowledge.md 공개 URL (가이드를 다른 도메인에 올렸다면 바꾸세요)
 KNOWLEDGE_URL = "https://dohoon0505.github.io/flower_dictionary/assets/chatbot/knowledge.md"
@@ -21,5 +20,5 @@ KNOWLEDGE_URL = "https://dohoon0505.github.io/flower_dictionary/assets/chatbot/k
 # CORS 허용 출처. 보안을 위해 위젯이 올라갈 실제 도메인으로 좁히는 것을 권장.
 ALLOW_ORIGIN = "*"
 
-# ANTHROPIC_API_KEY 는 [vars]에 두지 말고 반드시 secret 으로:
-#   npx wrangler secret put ANTHROPIC_API_KEY
+# OPENAI_API_KEY 는 [vars]에 두지 말고 반드시 secret 으로:
+#   npx wrangler secret put OPENAI_API_KEY

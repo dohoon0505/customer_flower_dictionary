@@ -205,15 +205,15 @@ function starterChips() {
 
 ---
 
-## 8. (선택) 진짜 AI로 답하게 하기 — Claude 백엔드
+## 8. (선택) 진짜 AI로 답하게 하기 — OpenAI GPT 백엔드
 
-내장 검색 대신 **가이드 내용을 학습(컨텍스트로 주입)한 Claude가 직접 생각해서 답**하게 할 수 있습니다. 정적 사이트만으로는 불가능하고(키 노출 위험), **키를 숨길 작은 백엔드**가 필요합니다. 이 저장소에 그 백엔드 코드가 들어 있습니다 → **[`chatbot-backend/`](chatbot-backend/README.md)**.
+내장 검색 대신 **가이드 내용을 학습(컨텍스트로 주입)한 GPT가 직접 생각해서 답**하게 할 수 있습니다. 정적 사이트만으로는 불가능하고(키 노출 위험), **키를 숨길 작은 백엔드**가 필요합니다. 이 저장소에 그 백엔드 코드가 들어 있습니다 → **[`chatbot-backend/`](chatbot-backend/README.md)**.
 
-방식은 **RAG·컨텍스트 그라운딩**입니다. 가이드 전체를 `assets/chatbot/knowledge.md`로 컴파일해 Claude의 시스템 컨텍스트로 주고(프롬프트 캐싱으로 비용 절감), 질문에 맞춰 Claude가 답을 생성합니다. 파인튜닝(모델 재학습)은 필요 없고, 가이드를 고치면 즉시 반영됩니다.
+방식은 **RAG·컨텍스트 그라운딩**입니다. 가이드 전체를 `assets/chatbot/knowledge.md`로 컴파일해 GPT의 시스템 지시(instructions)로 주고, 질문에 맞춰 GPT가 답을 생성합니다(OpenAI Responses API + 구조화 출력). 파인튜닝(모델 재학습)은 필요 없고, 가이드를 고치면 즉시 반영됩니다.
 
 **3단계로 연결:**
 
-1. **백엔드 배포** — `chatbot-backend/`를 Cloudflare Workers(추천·무료) / Vercel / Node 중 한 곳에 올리고 `ANTHROPIC_API_KEY`를 등록. (자세한 절차는 [chatbot-backend/README.md](chatbot-backend/README.md))
+1. **백엔드 배포** — `chatbot-backend/`를 Cloudflare Workers(추천·무료) / Vercel / Node 중 한 곳에 올리고 `OPENAI_API_KEY`를 등록. (자세한 절차는 [chatbot-backend/README.md](chatbot-backend/README.md))
 2. **지식 빌드** — 가이드 데이터로 knowledge.md 생성:
    ```bash
    node scripts/build-chatbot-knowledge.mjs
@@ -224,7 +224,7 @@ function starterChips() {
            data-api="https://flower-chat-backend.<계정>.workers.dev" defer></script>
    ```
 
-연결되면 챗봇은 Claude가 생성한 답변을 사용하고(호출 실패 시 **자동으로 내장 검색으로 폴백**), 직전 대화 맥락(history)도 함께 전달돼 자연스러운 멀티턴 상담이 됩니다.
+연결되면 챗봇은 GPT가 생성한 답변을 사용하고(호출 실패 시 **자동으로 내장 검색으로 폴백**), 직전 대화 맥락(history)도 함께 전달돼 자연스러운 멀티턴 상담이 됩니다.
 
 **API 규격** — 위젯은 백엔드로 다음을 `POST`합니다:
 
@@ -238,7 +238,7 @@ function starterChips() {
 { "reply": "답변 텍스트", "refs": [{ "title": "근조화환", "route": "chapter/products/condolence-wreath" }], "chips": ["관련 질문 1", "관련 질문 2"] }
 ```
 
-- `refs`·`chips`는 비어 있어도 됩니다. 모델은 기본 `claude-opus-4-8`이며, 대량·저비용이 필요하면 `claude-haiku-4-5`로 환경변수만 바꾸면 됩니다.
+- `refs`·`chips`는 비어 있어도 됩니다. 모델은 기본 `gpt-5.4-nano`이며, 정확한 모델 ID가 다르면 `OPENAI_MODEL` 환경변수만 바꾸면 됩니다.
 - ⚠️ **API 키는 절대 프런트(브라우저)에 두지 마세요.** 반드시 백엔드에만 두고, 그 백엔드를 `data-api`로 가리킵니다.
 
 ---

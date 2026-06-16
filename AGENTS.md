@@ -114,13 +114,13 @@ flower_dictionary/
 │   ├── chatbot.css
 │   ├── chatbot.js              ← KB 구축 + 한국어 검색 답변 엔진(기본)
 │   └── knowledge.md            ← AI 백엔드용 가이드 컴파일본(빌드 산출물)
-├── chatbot-backend/            ← (선택) AI 백엔드 — Claude RAG(core/worker/node)
+├── chatbot-backend/            ← (선택) AI 백엔드 — OpenAI GPT RAG(core/worker/node)
 └── scripts/build-chatbot-knowledge.mjs  ← knowledge.md 생성기
 ```
 
 > **상담 챗봇**: `chatbot.js`가 런타임에 `system.json` + 전 `chapter.json`을 읽어 Q&A 지식베이스를 만듭니다. **별도 챗봇 데이터를 만들지 마세요** — 챕터 콘텐츠를 고치면 챗봇 답변도 자동 반영됩니다. 새 본문 블록 타입을 추가하면 ① `chatbot.js`의 `indexChapter()`(검색용) ② `scripts/build-chatbot-knowledge.mjs`의 `blockToMd()`(AI 백엔드용 knowledge.md) 두 곳의 추출 분기에 같이 더하세요(없으면 그 블록이 누락).
 >
-> **(선택) AI 백엔드**: `chatbot-backend/`는 가이드(knowledge.md)를 Claude 컨텍스트로 주입해 답을 "생성"하는 RAG 백엔드(키 필요). 위젯에 `data-api`로 연결. 챕터를 고치면 `node scripts/build-chatbot-knowledge.mjs`로 knowledge.md를 다시 만들어 배포.
+> **(선택) AI 백엔드**: `chatbot-backend/`는 가이드(knowledge.md)를 OpenAI GPT 컨텍스트로 주입해 답을 "생성"하는 RAG 백엔드(키 필요). 위젯에 `data-api`로 연결. 챕터를 고치면 `node scripts/build-chatbot-knowledge.mjs`로 knowledge.md를 다시 만들어 배포.
 
 ---
 
